@@ -1,0 +1,45 @@
+import Link from 'next/link'
+import { categories } from '@/lib/categories'
+import { MobileMenu } from './MobileMenu'
+
+export function Header() {
+  // Solo mostramos en el menú principal las categorías que ya tienen
+  // contenido, para no enlazar a secciones vacías.
+  const mainCategories = categories.slice(0, 6)
+
+  return (
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
+      <div className="container-page flex h-16 items-center justify-between gap-6">
+        <Link href="/" className="shrink-0 text-lg font-bold tracking-tight">
+          Calculadoras<span className="text-brand-500">España</span>
+        </Link>
+
+        <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
+          {mainCategories.map((cat) => (
+            <Link
+              key={cat.slug}
+              href={`/categoria/${cat.slug}`}
+              className="text-slate-600 transition hover:text-brand-600 dark:text-slate-300"
+            >
+              {cat.name}
+            </Link>
+          ))}
+          <Link
+            href="/blog"
+            className="text-slate-600 transition hover:text-brand-600 dark:text-slate-300"
+          >
+            Blog
+          </Link>
+        </nav>
+
+        <div className="hidden shrink-0 md:block">
+          <Link href="/" className="btn-primary !px-4 !py-2 text-sm">
+            Inicio
+          </Link>
+        </div>
+
+        <MobileMenu categories={categories} />
+      </div>
+    </header>
+  )
+}
