@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getAllCalculatorSlugs, getCalculator } from '@/lib/calculators'
@@ -9,6 +10,8 @@ import {
 } from '@/lib/seo/generate'
 import { CalculatorForm } from '@/components/calculator/CalculatorForm'
 import { FaqAccordion } from '@/components/calculator/FaqAccordion'
+import { IrpfTramosTable } from '@/components/calculator/IrpfTramosTable'
+import { SalariosReferenciaTable } from '@/components/calculator/SalariosReferenciaTable'
 
 export const revalidate = 21600 // ISR: 6 horas
 
@@ -24,6 +27,12 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
   if (!calc) return {}
   return generateCalculatorMetadata(calc.meta)
 }
+
+// Bloques de contenido educativo específicos de cada calculadora. Se activan
+// por slug porque el texto tiene que ser preciso para esa fórmula concreta;
+// no tendría sentido mostrar la tabla de tramos IRPF en la calculadora de IVA.
+const MUESTRA_TABLA_IRPF = new Set(['nomina', 'irpf'])
+const MUESTRA_TABLA_SALARIOS = new Set(['nomina'])
 
 export default async function CalculadoraPage({ params }: PageParams) {
   const { slug } = await params
@@ -42,7 +51,7 @@ export default async function CalculadoraPage({ params }: PageParams) {
   ]
 
   return (
-    <main className="container-page py-12">
+    <main>
       {jsonLd.map((schema, i) => (
         <script
           key={i}
@@ -52,29 +61,57 @@ export default async function CalculadoraPage({ params }: PageParams) {
         />
       ))}
 
-      <nav className="text-sm text-slate-500">
-        <a href="/">Inicio</a> / <span>{meta.title}</span>
-      </nav>
-
-      <h1 className="mt-2 text-3xl font-bold">{meta.title}</h1>
-      <p className="mt-2 text-slate-600 dark:text-slate-400">{meta.metaDescription}</p>
-
-      <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_380px]">
-        <article className="prose dark:prose-invert max-w-none">
-          <h2>¿Cómo funciona esta calculadora?</h2>
-          <p>
-            Introduce tu salario bruto anual y el resto de datos en el
-            formulario para obtener una estimación de tu salario neto mensual,
-            con el desglose completo de Seguridad Social e IRPF.
+      {/* Hero centrado, al estilo "landing de conversión": título + subtítulo
+          + confianza, con la calculadora inmediatamente debajo. */}
+      <section className="border-b border-slate-200 bg-slate-50 py-10 dark:border-slate-800 dark:bg-slate-900/40">
+        <div className="container-page">
+          <nav className="text-sm text-slate-500">
+            <Link href="/">Inicio</Link> /{' '}
+            <Link href={`/categoria/${meta.categorySlug}`}>{meta.categorySlug}</Link> /{' '}
+            <span>{meta.title}</span>
+          </nav>
+          <h1 className="mt-2 text-3xl font-bold sm:text-4xl">{meta.title}</h1>
+          <p className="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">
+            {meta.metaDescription}
           </p>
+          <p className="mt-3 text-xs font-medium uppercase tracking-wide text-brand-600">
+            Sin registro · Resultado instantáneo · Actualizada 2026
+          </p>
+        </div>
+      </section>
 
-          <h2>Preguntas frecuentes</h2>
-          <FaqAccordion faqs={faqs} />
-        </article>
+      <div className="container-page py-12">
+        <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
+          <article className="prose dark:prose-invert max-w-none">
+            <h2>¿Cómo funciona esta calculadora?</h2>
+            <p>
+              Introduce tus datos en el formulario para obtener el resultado
+              al instante, con el desglose completo de cada concepto que
+              interviene en el cálculo.
+            </p>
 
-        <aside>
-          <CalculatorForm slug={meta.slug} />
-        </aside>
+            {MUESTRA_TABLA_IRPF.has(meta.slug) && (
+              <>
+                <h2>Tramos del IRPF 2026</h2>
+                <IrpfTramosTable />
+              </>
+            )}
+
+            {MUESTRA_TABLA_SALARIOS.has(meta.slug) && (
+              <>
+                <h2>Tabla de sueldos netos de referencia</h2>
+                <SalariosReferenciaTable />
+              </>
+            )}
+
+            <h2>Preguntas frecuentes</h2>
+            <FaqAccordion faqs={faqs} />
+          </article>
+
+          <aside>
+            <CalculatorForm slug={meta.slug} />
+          </aside>
+        </div>
       </div>
     </main>
   )

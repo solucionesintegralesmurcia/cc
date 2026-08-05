@@ -130,6 +130,8 @@ const LABELS: Record<string, string> = {
   formacionProfesional: 'Formación profesional',
   totalSegSocialTrabajador: 'Total Seg. Social',
   baseImponibleIrpf: 'Base imponible IRPF',
+  minimoExento: 'Mínimo personal y familiar',
+  baseLiquidable: 'Base liquidable',
   retencionIrpfPorcentaje: '% Retención IRPF',
   retencionIrpfEuros: 'Retención IRPF (€)',
   salarioNetoMensual: 'Neto mensual',

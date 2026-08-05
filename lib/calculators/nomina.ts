@@ -7,7 +7,7 @@ import type { CalculatorDefinition } from './types'
 // Los tipos de cotización y tramos de IRPF cambian cada año. Por eso NO están
 // hardcodeados "a fuego" en producción: en la versión final vienen de la tabla
 // `tax_tables` de Supabase (editable desde el admin), y esta función recibe la
-// tabla vigente como parámetro. Aquí se dejan unos valores 2025 por defecto
+// tabla vigente como parámetro. Aquí se dejan unos valores 2026 por defecto
 // para que el motor sea funcional y testeable desde ya.
 
 export const nominaInputSchema = z.object({
@@ -18,7 +18,7 @@ export const nominaInputSchema = z.object({
     .default('soltero'),
   numHijos: z.number().int().min(0).max(10).default(0),
   comunidadAutonoma: z.string().default('generico'),
-  contratoIndefinido: z.boolean().default(true),
+  discapacidad: z.enum(['ninguna', '33_64', '65_mas']).default('ninguna'),
 })
 
 export type NominaInput = z.infer<typeof nominaInputSchema>
@@ -30,36 +30,64 @@ interface NominaBreakdown extends Record<string, number> {
   formacionProfesional: number
   totalSegSocialTrabajador: number
   baseImponibleIrpf: number
+  minimoExento: number
+  baseLiquidable: number
   retencionIrpfPorcentaje: number
   retencionIrpfEuros: number
   salarioNetoMensual: number
   salarioNetoAnual: number
 }
 
-// Tipos de cotización del trabajador (Régimen General, valores 2025 de referencia)
+// Tipos de cotización del trabajador (Régimen General, valores 2026 de referencia:
+// contingencias comunes 4,70% + desempleo 1,55% + formación 0,10% + MEI 0,15%)
 const TIPOS_SS_TRABAJADOR = {
   contingenciasComunes: 0.047,
-  desempleo: 0.0155, // indefinido; temporal sería 0.0160
+  desempleo: 0.0155,
   formacionProfesional: 0.001,
+  mei: 0.0015,
 }
 
-// Estimación simplificada de retención IRPF por tramos de renta (orientativa;
-// no sustituye el cálculo oficial de la AEAT, que incorpora más variables).
-function estimarPorcentajeIrpf(baseAnual: number, hijos: number, situacion: string): number {
-  let base = baseAnual - hijos * 1200
-  if (situacion === 'casado_1_ingreso') base -= 3400
+// Tramos combinados (estatal + autonómico general) 2026, orientativos.
+const TRAMOS_IRPF = [
+  { hasta: 12450, tipo: 0.19 },
+  { hasta: 20200, tipo: 0.24 },
+  { hasta: 35200, tipo: 0.3 },
+  { hasta: 60000, tipo: 0.37 },
+  { hasta: 300000, tipo: 0.45 },
+  { hasta: Infinity, tipo: 0.47 },
+]
 
-  const tramos = [
-    { hasta: 12450, tipo: 0.02 },
-    { hasta: 20200, tipo: 0.06 },
-    { hasta: 35200, tipo: 0.11 },
-    { hasta: 60000, tipo: 0.18 },
-    { hasta: 300000, tipo: 0.24 },
-    { hasta: Infinity, tipo: 0.3 },
-  ]
+// Ajuste orientativo por comunidad autónoma sobre el tipo autonómico
+// (algunas CCAA aplican tipos más bajos o más altos que la media estatal).
+// Valores aproximados a modo ilustrativo; no sustituyen las escalas oficiales
+// publicadas por cada comunidad.
+const AJUSTE_CCAA: Record<string, number> = {
+  generico: 0,
+  madrid: -0.015,
+  cataluna: 0.01,
+  valenciana: 0.012,
+  andalucia: -0.005,
+  pais_vasco: -0.02, // régimen foral, cálculo real es distinto
+  navarra: -0.01, // régimen foral, cálculo real es distinto
+}
 
-  const tramo = tramos.find((t) => base <= t.hasta) ?? tramos[tramos.length - 1]!
-  return Math.max(tramo.tipo, 0)
+// Cálculo progresivo real: cada euro tributa según el tramo en el que cae.
+function calcularCuotaProgresiva(baseLiquidable: number, ajusteCcaa: number): number {
+  let cuota = 0
+  let restante = baseLiquidable
+  let limiteAnterior = 0
+
+  for (const tramo of TRAMOS_IRPF) {
+    if (restante <= 0) break
+    const anchoTramo = tramo.hasta - limiteAnterior
+    const importeEnTramo = Math.min(restante, anchoTramo)
+    const tipoAjustado = Math.max(0, tramo.tipo + ajusteCcaa)
+    cuota += importeEnTramo * tipoAjustado
+    restante -= importeEnTramo
+    limiteAnterior = tramo.hasta
+  }
+
+  return cuota
 }
 
 function round2(n: number) {
@@ -74,14 +102,22 @@ function calculate(input: NominaInput) {
   const contingenciasComunes = salarioBrutoMensual * TIPOS_SS_TRABAJADOR.contingenciasComunes
   const desempleo = salarioBrutoMensual * TIPOS_SS_TRABAJADOR.desempleo
   const formacionProfesional = salarioBrutoMensual * TIPOS_SS_TRABAJADOR.formacionProfesional
-  const totalSegSocialTrabajador = contingenciasComunes + desempleo + formacionProfesional
+  const mei = salarioBrutoMensual * TIPOS_SS_TRABAJADOR.mei
+  const totalSegSocialTrabajador = contingenciasComunes + desempleo + formacionProfesional + mei
 
   const baseImponibleIrpf = parsed.salarioBrutoAnual - totalSegSocialTrabajador * numPagas
-  const retencionIrpfPorcentaje = estimarPorcentajeIrpf(
-    baseImponibleIrpf,
-    parsed.numHijos,
-    parsed.situacionFamiliar
-  )
+
+  // Mínimo personal y familiar (reduce la base antes de aplicar tramos)
+  let minimoExento = parsed.situacionFamiliar === 'casado_1_ingreso' ? 5550 + 3400 : 5550
+  minimoExento += parsed.numHijos * 2400
+  if (parsed.discapacidad === '33_64') minimoExento += 3000
+  if (parsed.discapacidad === '65_mas') minimoExento += 9000
+
+  const baseLiquidable = Math.max(0, baseImponibleIrpf - minimoExento)
+  const ajusteCcaa = AJUSTE_CCAA[parsed.comunidadAutonoma] ?? 0
+  const cuotaAnual = calcularCuotaProgresiva(baseLiquidable, ajusteCcaa)
+
+  const retencionIrpfPorcentaje = baseImponibleIrpf > 0 ? cuotaAnual / baseImponibleIrpf : 0
   const retencionIrpfEuros = salarioBrutoMensual * retencionIrpfPorcentaje
 
   const salarioNetoMensual = salarioBrutoMensual - totalSegSocialTrabajador - retencionIrpfEuros
@@ -94,6 +130,8 @@ function calculate(input: NominaInput) {
     formacionProfesional: round2(formacionProfesional),
     totalSegSocialTrabajador: round2(totalSegSocialTrabajador),
     baseImponibleIrpf: round2(baseImponibleIrpf),
+    minimoExento: round2(minimoExento),
+    baseLiquidable: round2(baseLiquidable),
     retencionIrpfPorcentaje: round2(retencionIrpfPorcentaje * 100),
     retencionIrpfEuros: round2(retencionIrpfEuros),
     salarioNetoMensual: round2(salarioNetoMensual),
@@ -117,7 +155,7 @@ export const nominaCalculator: CalculatorDefinition<NominaInput, NominaBreakdown
     title: 'Calculadora de Nómina 2026',
     seoTitle: 'Calculadora de Nómina 2026: Salario Bruto a Neto Online Gratis',
     metaDescription:
-      'Calcula tu nómina neta a partir del salario bruto anual. Incluye Seguridad Social, IRPF, pagas extra y situación familiar. Actualizada 2026.',
+      'Calcula tu nómina neta a partir del salario bruto anual. IRPF progresivo por tramos, Seguridad Social, comunidad autónoma, hijos y discapacidad. Actualizada 2026.',
     shortDescription: 'Convierte tu salario bruto en neto mensual, con desglose de SS e IRPF.',
     updatedAt: '2026-01-01',
   },
@@ -134,6 +172,20 @@ export const nominaCalculator: CalculatorDefinition<NominaInput, NominaBreakdown
       ],
     },
     {
+      key: 'comunidadAutonoma',
+      label: 'Comunidad autónoma',
+      type: 'select',
+      options: [
+        { value: 'generico', label: 'Media nacional' },
+        { value: 'madrid', label: 'Madrid' },
+        { value: 'cataluna', label: 'Cataluña' },
+        { value: 'valenciana', label: 'C. Valenciana' },
+        { value: 'andalucia', label: 'Andalucía' },
+        { value: 'pais_vasco', label: 'País Vasco *' },
+        { value: 'navarra', label: 'Navarra *' },
+      ],
+    },
+    {
       key: 'situacionFamiliar',
       label: 'Situación familiar',
       type: 'select',
@@ -144,6 +196,16 @@ export const nominaCalculator: CalculatorDefinition<NominaInput, NominaBreakdown
       ],
     },
     { key: 'numHijos', label: 'Número de hijos', type: 'number' },
+    {
+      key: 'discapacidad',
+      label: 'Discapacidad',
+      type: 'select',
+      options: [
+        { value: 'ninguna', label: 'No' },
+        { value: '33_64', label: '33% – 64%' },
+        { value: '65_mas', label: '65% o más' },
+      ],
+    },
   ],
   defaultValues: {
     salarioBrutoAnual: 24000,
@@ -151,23 +213,28 @@ export const nominaCalculator: CalculatorDefinition<NominaInput, NominaBreakdown
     situacionFamiliar: 'soltero',
     numHijos: 0,
     comunidadAutonoma: 'generico',
-    contratoIndefinido: true,
+    discapacidad: 'ninguna',
   },
   faqs: [
     {
       question: '¿Cómo se calcula el salario neto a partir del bruto?',
       answer:
-        'Al salario bruto se le restan las cotizaciones a la Seguridad Social del trabajador (contingencias comunes, desempleo y formación profesional) y la retención de IRPF correspondiente a tu tramo de renta y situación familiar.',
+        'Al salario bruto se le restan las cotizaciones a la Seguridad Social del trabajador (contingencias comunes, desempleo, formación profesional y MEI) y la retención de IRPF, calculada de forma progresiva sobre la base liquidable tras aplicar el mínimo personal y familiar.',
+    },
+    {
+      question: '¿Por qué influye la comunidad autónoma en el resultado?',
+      answer:
+        'El IRPF se compone de un tramo estatal, igual en toda España, y un tramo autonómico que cada comunidad puede fijar de forma distinta. Por eso el mismo salario bruto puede dar un neto ligeramente distinto según dónde resides fiscalmente.',
     },
     {
       question: '¿Qué diferencia hay entre 12 y 14 pagas?',
       answer:
-        'Con 14 pagas, las dos extras se cobran aparte en verano y Navidad. Con 12 pagas, el importe de las extras se prorratea entre los 12 meses, por lo que la nómina mensual es más alta pero no hay pagas adicionales.',
+        'El neto anual total es el mismo. Con 14 pagas, dos de ellas son extras (normalmente en verano y Navidad). Con 12 pagas, ese importe se prorratea entre los 12 meses, por lo que cada nómina mensual es mayor pero no hay pagas adicionales.',
     },
     {
       question: '¿Este cálculo es exacto o solo orientativo?',
       answer:
-        'Es una estimación fiable para la mayoría de casos del Régimen General, pero no sustituye el cálculo oficial de tu empresa o la Agencia Tributaria, que puede incluir variables adicionales (convenio colectivo, complementos, comunidad autónoma, etc.).',
+        'Es una estimación fiable para la mayoría de casos del Régimen General, pero no sustituye el cálculo oficial de tu empresa o la Agencia Tributaria. País Vasco y Navarra tienen regímenes forales con un cálculo distinto al del resto de España.',
     },
   ],
   calculate,

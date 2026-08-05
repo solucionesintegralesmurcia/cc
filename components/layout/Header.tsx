@@ -9,6 +9,11 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
+      {/* Barra de confianza: refuerza autoridad/actualidad, clave para SEO y conversión */}
+      <div className="border-b border-slate-100 bg-brand-50 py-1.5 text-center text-xs font-medium text-brand-900 dark:border-slate-900 dark:bg-brand-900/20 dark:text-brand-100">
+        Actualizado 2026 · IRPF 2026 · Seguridad Social 2026
+      </div>
+
       <div className="container-page flex h-16 items-center justify-between gap-6">
         <Link href="/" className="shrink-0 text-lg font-bold tracking-tight">
           Calculadoras<span className="text-brand-500">España</span>
