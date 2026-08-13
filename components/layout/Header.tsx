@@ -2,11 +2,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { categories } from '@/lib/categories'
 import { MobileMenu } from './MobileMenu'
+import { MoreCategoriesMenu } from './MoreCategoriesMenu'
 
 export function Header() {
-  // Solo mostramos en el menú principal las categorías que ya tienen
-  // contenido, para no enlazar a secciones vacías.
-  const mainCategories = categories.slice(0, 6)
+  // Con las 12 categorías ya con contenido, mostramos las 5 principales
+  // directamente en la barra y el resto en un desplegable "Más", para no
+  // saturar el header ni dejar categorías sin enlazar desde la navegación
+  // principal (antes se cortaba a 6 y la mitad solo era accesible desde
+  // el footer o el menú móvil).
+  const mainCategories = categories.slice(0, 5)
+  const moreCategories = categories.slice(5)
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
@@ -40,6 +45,7 @@ export function Header() {
               {cat.name}
             </Link>
           ))}
+          {moreCategories.length > 0 && <MoreCategoriesMenu categories={moreCategories} />}
           <Link
             href="/blog"
             className="text-slate-600 transition hover:text-brand-600 dark:text-slate-300"

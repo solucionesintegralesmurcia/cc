@@ -135,6 +135,96 @@ export const articles: Article[] = [
     relatedCalculatorSlugs: ['prestamo', 'hipoteca'],
     updatedAt: '2026-01-24',
   },
+  {
+    slug: 'cotizacion-autonomos-ingresos-reales',
+    title: 'Cotización de autónomos por ingresos reales: cómo funciona el sistema de tramos',
+    seoTitle: 'Cotización de Autónomos 2026: Tramos por Ingresos Reales Explicados',
+    metaDescription:
+      'Entiende cómo funciona la cotización de autónomos por rendimientos netos reales, qué tramo te corresponde y cómo aplica la tarifa plana al darte de alta.',
+    excerpt:
+      'Desde la reforma, ya no pagas una cuota fija: pagas según lo que realmente ganas. Te explicamos cómo funciona el sistema de tramos.',
+    content: [
+      'Desde 2023, los autónomos en España cotizan según sus rendimientos netos reales (ingresos menos gastos deducibles), y ya no según una cuota fija elegida libremente como ocurría antes. El sistema se organiza en tramos: cuanto más ganas, más pagas, de forma escalonada.',
+      'El rendimiento neto no es lo mismo que la facturación. Se calcula restando a tus ingresos los gastos deducibles de la actividad, más una deducción adicional por gastos de difícil justificación (un 7% en estimación directa normal, con límites).',
+      'Como los ingresos de un autónomo varían mes a mes, la normativa permite cambiar de tramo de cotización hasta seis veces al año, para ajustar la cuota a una previsión realista y evitar sorpresas grandes en la regularización anual con la Seguridad Social.',
+      'Si acabas de darte de alta como autónomo, no aplicas estos tramos desde el primer día: tienes derecho a la tarifa plana, una cuota reducida fija durante los primeros 12 meses (ampliable otros 12 si tus ingresos siguen siendo bajos), independientemente de cuánto factures.',
+      'Puedes ver qué cuota te correspondería exactamente, según tu rendimiento neto mensual o si aún disfrutas de la tarifa plana, en la calculadora de cuota de autónomos.',
+    ],
+    relatedCalculatorSlugs: ['cuota-autonomos', 'coste-empresa'],
+    updatedAt: '2026-01-27',
+  },
+  {
+    slug: 'rentabilidad-total-vs-anualizada',
+    title: 'Rentabilidad total vs. anualizada: por qué el CAGR es la métrica que de verdad importa',
+    seoTitle: 'Rentabilidad Total vs Anualizada (CAGR): Cómo Comparar Inversiones Bien',
+    metaDescription:
+      'Aprende la diferencia entre rentabilidad total y rentabilidad anualizada (CAGR), y por qué es la única forma justa de comparar inversiones con plazos distintos.',
+    excerpt:
+      'Decir "gané un 50%" no dice nada si no sabes en cuántos años. Te explicamos por qué el CAGR es la métrica que de verdad hay que mirar.',
+    content: [
+      'Es habitual ver a alguien presumir de una rentabilidad total del 50% en una inversión, sin mencionar cuánto tiempo ha tardado en conseguirla. El dato, aislado, es casi inútil: no es lo mismo un 50% en 2 años que en 15.',
+      'Ahí es donde entra la rentabilidad anualizada, también conocida como CAGR (Compound Annual Growth Rate). Convierte cualquier ganancia total en una tasa constante equivalente por año, lo que permite comparar inversiones de distinta duración de forma justa.',
+      'La fórmula tiene en cuenta el efecto compuesto: no es una simple media aritmética (dividir el 50% entre los años), sino la tasa que, aplicada cada año sobre el capital ya acumulado, llevaría del valor inicial al valor final observado.',
+      'Por eso el CAGR siempre es igual o menor que la rentabilidad total dividida entre los años de forma simple. Cuanto más largo el periodo, mayor suele ser esa diferencia.',
+      'Puedes calcular tanto la rentabilidad total como la anualizada de cualquier inversión, a partir del capital invertido, el valor actual y el tiempo transcurrido, en la calculadora de rentabilidad de inversión.',
+    ],
+    relatedCalculatorSlugs: ['rentabilidad-inversion', 'ahorro'],
+    updatedAt: '2026-01-30',
+  },
+  {
+    slug: 'regla-50-30-20-explicada',
+    title: 'La regla 50/30/20: una forma sencilla de repartir tu sueldo',
+    seoTitle: 'Regla 50/30/20 Explicada: Cómo Repartir tu Sueldo de Forma Sencilla',
+    metaDescription:
+      'Qué es la regla de presupuesto 50/30/20, qué gastos entran en cada bloque, y por qué es un punto de partida útil aunque no encaje siempre a la perfección.',
+    excerpt:
+      'No hace falta una app compleja para empezar a organizar tu dinero. Con tres números y tu nómina ya tienes un punto de partida.',
+    content: [
+      'La regla 50/30/20 es un método popularizado por la senadora estadounidense Elizabeth Warren en su libro sobre finanzas personales: dividir el ingreso neto mensual en tres bloques, 50% para necesidades, 30% para deseos y 20% para ahorro e inversión.',
+      'El bloque de necesidades cubre lo imprescindible: vivienda, suministros, alimentación básica, transporte para trabajar y seguros obligatorios. Si este bloque supera regularmente el 50%, suele ser señal de que conviene revisar el gasto fijo más grande, normalmente la vivienda.',
+      'El bloque de deseos incluye todo lo que mejora tu día a día pero no es estrictamente necesario: ocio, restaurantes, suscripciones, viajes. Aquí es donde más margen de ajuste suele haber sin afectar a lo esencial.',
+      'El 20% de ahorro e inversión es el bloque que con más frecuencia se sacrifica cuando aprieta el mes, y es precisamente el que construye seguridad financiera a largo plazo, por lo que muchos asesores recomiendan tratarlo como un gasto fijo más, no como lo que "sobra" al final.',
+      'No es una fórmula rígida: en ciudades con alquileres muy altos, el 50% de necesidades puede ser insuficiente sin que eso signifique mala gestión. Puedes ver el reparto exacto para tu sueldo neto en la calculadora de presupuesto 50/30/20.',
+    ],
+    relatedCalculatorSlugs: ['presupuesto-50-30-20', 'ahorro'],
+    updatedAt: '2026-02-02',
+  },
+  {
+    slug: 'plusvalia-municipal-metodo-objetivo-real',
+    title: 'Plusvalía municipal: por qué desde 2021 puedes elegir cómo se calcula',
+    seoTitle: 'Plusvalía Municipal 2026: Método Objetivo vs Real, Cuál Elegir',
+    metaDescription:
+      'Desde la reforma de 2021 puedes elegir entre el método objetivo y el real para calcular la plusvalía municipal. Explicamos cuándo conviene cada uno.',
+    excerpt:
+      'Si vendes una vivienda, no siempre te conviene el mismo método de cálculo. Desde 2021 la ley te deja elegir el que te resulte más barato.',
+    content: [
+      'La plusvalía municipal (IIVTNU) grava el incremento de valor del suelo urbano entre la compra y la venta de un inmueble. Durante años se calculaba con una fórmula objetiva que, en mercados bajistas, podía obligar a pagar el impuesto incluso vendiendo con pérdidas, lo que el Tribunal Constitucional acabó declarando inconstitucional.',
+      'Tras la reforma de 2021, el contribuyente puede elegir entre dos métodos: el objetivo (basado en el valor catastral del suelo y unos coeficientes que dependen de los años de posesión) o el real (basado en la diferencia efectiva entre el precio de compra y el de venta). Se paga el que resulte más bajo.',
+      'El método objetivo suele convenir cuando la ganancia real ha sido muy alta en relación con el valor catastral del suelo, especialmente en zonas donde el catastro está desactualizado a la baja. El método real suele convenir cuando la ganancia efectiva ha sido moderada o la vivienda se revalorizó poco.',
+      'Si vendes por el mismo precio o más barato de lo que compraste, no hay incremento real de valor y la operación queda exenta, aunque conviene poder acreditarlo documentalmente ante el ayuntamiento.',
+      'Puedes comparar ambos métodos para tu caso concreto, con el valor catastral del suelo, los precios de compra y venta y los años de posesión, en la calculadora de plusvalía municipal.',
+    ],
+    relatedCalculatorSlugs: ['plusvalia-municipal', 'gastos-compraventa'],
+    updatedAt: '2026-02-05',
+  },
+  {
+    slug: 'gastos-comprar-vivienda-nueva-vs-usada',
+    title: 'Cuánto cuesta realmente comprar una vivienda: todos los gastos, nueva vs. usada',
+    seoTitle: 'Gastos de Comprar Vivienda 2026: Nueva vs Usada, Impuestos y Notaría',
+    metaDescription:
+      'Además del precio de la vivienda, comprar implica impuestos, notaría, registro y gestoría. Explicamos cuánto suman y en qué se diferencia comprar vivienda nueva o usada.',
+    excerpt:
+      'El precio de la vivienda es solo el principio. Repasamos todos los gastos adicionales que hay que presupuestar antes de firmar.',
+    content: [
+      'Un error frecuente al presupuestar la compra de una vivienda es contar solo el precio de compra y olvidar los gastos asociados, que en España suelen sumar entre un 10% y un 15% adicional sobre el precio, según se trate de vivienda nueva o de segunda mano.',
+      'Al comprar vivienda nueva (directamente al promotor), se paga IVA (10% en vivienda habitual) más el Impuesto de Actos Jurídicos Documentados (AJD), que varía por comunidad autónoma pero suele rondar el 1-1,5%.',
+      'Al comprar vivienda de segunda mano, en su lugar se paga el Impuesto de Transmisiones Patrimoniales (ITP), que sustituye al IVA y al AJD, y que puede ir del 6% al 11% aproximadamente según la comunidad autónoma y, en algunos casos, según el perfil del comprador (jóvenes, familias numerosas).',
+      'A eso hay que sumar la notaría y el registro de la propiedad, aranceles regulados que dependen del precio de la vivienda, y normalmente una gestoría que se encarga de la liquidación de impuestos y la inscripción registral.',
+      'Si además financias la compra con hipoteca, hay que presupuestar aparte la tasación del inmueble, exigida por el banco. Puedes calcular el total de gastos según el precio de la vivienda y si es nueva o usada en la calculadora de gastos de compraventa.',
+    ],
+    relatedCalculatorSlugs: ['gastos-compraventa', 'hipoteca'],
+    updatedAt: '2026-02-08',
+  },
 ]
 
 export function getArticle(slug: string) {

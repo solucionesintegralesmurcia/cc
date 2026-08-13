@@ -124,6 +124,77 @@ function EmpresasIllustration() {
   )
 }
 
+function AutonomosIllustration() {
+  return (
+    <Base>
+      <circle cx="120" cy="80" r="22" fill={PALETTE.goldLight} />
+      <path d="M85 155 C85 120 155 120 155 155 Z" fill={PALETTE.navy} />
+      <rect x="100" y="60" width="40" height="10" rx="5" fill={PALETTE.navyDark} />
+      <circle cx="160" cy="130" r="18" fill={PALETTE.gold} />
+      <text x="160" y="137" fontSize="16" fill="white" textAnchor="middle" fontWeight="bold">
+        €
+      </text>
+    </Base>
+  )
+}
+
+function InversionesIllustration() {
+  return (
+    <Base>
+      <polyline
+        points="60,140 90,110 115,125 150,80 180,60"
+        fill="none"
+        stroke={PALETTE.navy}
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <polygon points="180,60 165,64 176,75" fill={PALETTE.navy} />
+      <rect x="80" y="130" width="14" height="20" fill={PALETTE.goldLight} />
+      <rect x="105" y="115" width="14" height="35" fill={PALETTE.gold} />
+      <rect x="140" y="95" width="14" height="55" fill={PALETTE.goldLight} />
+    </Base>
+  )
+}
+
+function FinanzasPersonalesIllustration() {
+  return (
+    <Base>
+      <circle cx="120" cy="110" r="45" fill="white" stroke={PALETTE.navy} strokeWidth="6" />
+      <path d="M120 110 L120 72 A38 38 0 0 1 154 128 Z" fill={PALETTE.gold} />
+      <path d="M120 110 L154 128 A38 38 0 0 1 96 143 Z" fill={PALETTE.goldLight} />
+      <circle cx="120" cy="110" r="6" fill={PALETTE.navyDark} />
+    </Base>
+  )
+}
+
+function ImpuestosIllustration() {
+  return (
+    <Base>
+      <rect x="78" y="52" width="84" height="106" rx="6" fill={PALETTE.navy} />
+      <rect x="90" y="68" width="60" height="8" rx="4" fill={PALETTE.goldLight} />
+      <rect x="90" y="84" width="40" height="8" rx="4" fill="white" opacity="0.6" />
+      <circle cx="120" cy="122" r="22" fill={PALETTE.gold} />
+      <text x="120" y="129" fontSize="18" fill="white" textAnchor="middle" fontWeight="bold">
+        %
+      </text>
+    </Base>
+  )
+}
+
+function ViviendaIllustration() {
+  return (
+    <Base>
+      <polygon points="120,48 178,92 62,92" fill={PALETTE.navyDark} />
+      <rect x="72" y="92" width="96" height="66" fill={PALETTE.navy} />
+      <rect x="112" y="118" width="16" height="40" fill={PALETTE.navyDark} />
+      <rect x="84" y="104" width="18" height="18" fill={PALETTE.goldLight} />
+      <rect x="138" y="104" width="18" height="18" fill={PALETTE.goldLight} />
+      <rect x="60" y="155" width="120" height="6" rx="3" fill={PALETTE.gold} />
+    </Base>
+  )
+}
+
 const ILLUSTRATIONS: Record<string, () => React.JSX.Element> = {
   laboral: LaboralIllustration,
   fiscal: FiscalIllustration,
@@ -132,6 +203,11 @@ const ILLUSTRATIONS: Record<string, () => React.JSX.Element> = {
   ahorro: AhorroIllustration,
   vehiculos: VehiculosIllustration,
   empresas: EmpresasIllustration,
+  autonomos: AutonomosIllustration,
+  inversiones: InversionesIllustration,
+  'finanzas-personales': FinanzasPersonalesIllustration,
+  impuestos: ImpuestosIllustration,
+  vivienda: ViviendaIllustration,
 }
 
 export function CategoryIllustration({
