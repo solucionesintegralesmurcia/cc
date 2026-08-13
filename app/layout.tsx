@@ -6,7 +6,7 @@ import { CookieConsent } from '@/components/layout/CookieConsent'
 import { AdSenseScript } from '@/components/layout/AdSenseScript'
 
 export const viewport: Viewport = {
-  themeColor: '#16a34a',
+  themeColor: '#1e3a8a',
 }
 
 export const metadata: Metadata = {
@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   description:
     'La plataforma de calculadoras online más completa de España: nómina, hipoteca, IRPF, jubilación, autónomos y mucho más. Gratis y actualizadas.',
   robots: { index: true, follow: true },
+  icons: {
+    icon: [{ url: '/favicon-32.png', sizes: '32x32', type: 'image/png' }],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

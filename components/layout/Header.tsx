@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { categories } from '@/lib/categories'
 import { MobileMenu } from './MobileMenu'
 
@@ -15,8 +16,18 @@ export function Header() {
       </div>
 
       <div className="container-page flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="shrink-0 text-lg font-bold tracking-tight">
-          Calculadoras<span className="text-brand-500">España</span>
+        <Link href="/" className="flex shrink-0 items-center gap-2">
+          <Image
+            src="/logo-icon-512.png"
+            alt="Calculadoras España"
+            width={36}
+            height={36}
+            className="rounded-lg"
+            priority
+          />
+          <span className="hidden text-lg font-bold tracking-tight sm:inline">
+            Calculadoras<span className="text-gold-600">España</span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">

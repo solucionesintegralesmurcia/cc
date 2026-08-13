@@ -19,6 +19,9 @@ export default function HomePage() {
             Nómina, hipoteca, IRPF, préstamos, ahorro y mucho más. Gratis,
             rápidas y siempre actualizadas.
           </p>
+          <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-gold-600">
+            Calcula · Compara · Decide mejor
+          </p>
           <div className="mt-8">
             <input
               type="search"

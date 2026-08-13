@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { categories } from '@/lib/categories'
 
 export function Footer() {
@@ -7,8 +8,17 @@ export function Footer() {
       <div className="container-page">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="text-lg font-bold tracking-tight">
-              Calculadoras<span className="text-brand-500">España</span>
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/logo-icon-512.png"
+                alt="Calculadoras España"
+                width={32}
+                height={32}
+                className="rounded-lg"
+              />
+              <span className="text-lg font-bold tracking-tight">
+                Calculadoras<span className="text-gold-600">España</span>
+              </span>
             </Link>
             <p className="mt-2 text-sm text-slate-500">
               Calculadoras gratuitas y actualizadas para nómina, hipoteca, fiscalidad y más.
