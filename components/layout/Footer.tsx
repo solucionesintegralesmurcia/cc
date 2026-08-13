@@ -57,6 +57,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/metodologia" className="hover:text-brand-600">
+                  Metodología
+                </Link>
+              </li>
+              <li>
                 <Link href="/contacto" className="hover:text-brand-600">
                   Contacto
                 </Link>

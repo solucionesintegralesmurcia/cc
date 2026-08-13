@@ -58,7 +58,12 @@ export default function PrivacidadPage() {
 
         <h2>3. Publicidad y Google AdSense</h2>
         <p>
-          Este sitio utiliza Google AdSense para mostrar anuncios. Google, como tercero, puede
+          Este sitio se financia mediante publicidad de terceros, principalmente Google AdSense.
+          No incluimos enlaces de afiliados encubiertos ni recomendaciones de productos
+          financieros pagadas: nuestros cálculos no se ven influidos por ningún interés comercial.
+        </p>
+        <p>
+          Google, como tercero, puede
           utilizar cookies y tecnologías similares para mostrar anuncios basados en tus visitas
           anteriores a este sitio o a otros sitios web, y puede usar identificadores de
           publicidad. Puedes inhabilitar la publicidad personalizada visitando los{' '}
