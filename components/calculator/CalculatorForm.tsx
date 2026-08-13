@@ -16,6 +16,7 @@ export function CalculatorForm({ slug }: Props) {
   const calculator = getCalculator(slug)
   const [result, setResult] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
+  const [shareStatus, setShareStatus] = useState<'idle' | 'copied'>('idle')
 
   if (!calculator) return null
 
@@ -26,9 +27,81 @@ export function CalculatorForm({ slug }: Props) {
   function onSubmit(data: any) {
     try {
       setError(null)
-      setResult(calculator.calculate(data))
+      setResult(calculator!.calculate(data))
     } catch {
       setError('Revisa los datos introducidos: algún valor no es válido.')
+    }
+  }
+
+  async function handleDownloadPdf() {
+    if (!result) return
+    // Import dinámico: jsPDF solo se carga cuando el usuario realmente pulsa
+    // el botón, así no engorda el bundle inicial de cada calculadora.
+    const { jsPDF } = await import('jspdf')
+    const doc = new jsPDF()
+
+    doc.setFontSize(16)
+    doc.text(calculator!.meta.title, 14, 20)
+
+    doc.setFontSize(11)
+    doc.setTextColor(100)
+    doc.text(`Generado el ${new Date().toLocaleDateString('es-ES')} en calculadorasespana.es`, 14, 28)
+
+    doc.setFontSize(13)
+    doc.setTextColor(0)
+    doc.text(result.main.label, 14, 42)
+    doc.setFontSize(20)
+    doc.text(formatValue(result.main.value, result.main.unit), 14, 52)
+
+    doc.setFontSize(11)
+    let y = 66
+    Object.entries(result.breakdown).forEach(([key, value]) => {
+      const label = formatLabel(key)
+      const displayValue =
+        typeof value === 'number'
+          ? key.toLowerCase().includes('porcentaje') || key.toLowerCase().includes('tipo')
+            ? `${value}%`
+            : value.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })
+          : String(value)
+      doc.text(label, 14, y)
+      doc.text(displayValue, 140, y, { align: 'right' })
+      y += 8
+    })
+
+    doc.setFontSize(9)
+    doc.setTextColor(150)
+    doc.text(
+      'Resultado orientativo. No sustituye el asesoramiento fiscal, laboral o financiero profesional.',
+      14,
+      y + 10,
+      { maxWidth: 180 }
+    )
+
+    doc.save(`${calculator!.meta.slug}-resultado.pdf`)
+  }
+
+  async function handleShare() {
+    const url = window.location.href
+    const shareText = result
+      ? `${result.main.label}: ${formatValue(result.main.value, result.main.unit)} — calculado en ${calculator!.meta.title}`
+      : calculator!.meta.title
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: calculator!.meta.title, text: shareText, url })
+      } catch {
+        // El usuario cerró el diálogo de compartir sin elegir nada; no es un error real.
+      }
+      return
+    }
+
+    // Navegadores de escritorio sin Web Share API: copiar al portapapeles.
+    try {
+      await navigator.clipboard.writeText(url)
+      setShareStatus('copied')
+      setTimeout(() => setShareStatus('idle'), 2000)
+    } catch {
+      setError('No se ha podido copiar el enlace. Cópialo manualmente desde la barra de direcciones.')
     }
   }
 
@@ -100,11 +173,19 @@ export function CalculatorForm({ slug }: Props) {
           </dl>
 
           <div className="mt-4 flex gap-2">
-            <button className="btn-primary flex-1 !bg-slate-800 hover:!bg-slate-900">
+            <button
+              type="button"
+              onClick={handleDownloadPdf}
+              className="btn-primary flex-1 !bg-slate-800 hover:!bg-slate-900"
+            >
               Descargar PDF
             </button>
-            <button className="btn-primary flex-1 !bg-slate-100 !text-slate-900 hover:!bg-slate-200">
-              Compartir
+            <button
+              type="button"
+              onClick={handleShare}
+              className="btn-primary flex-1 !bg-slate-100 !text-slate-900 hover:!bg-slate-200"
+            >
+              {shareStatus === 'copied' ? 'Enlace copiado ✓' : 'Compartir'}
             </button>
           </div>
         </div>

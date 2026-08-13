@@ -19,7 +19,8 @@
     "@hookform/resolvers": "3.9.1",
     "clsx": "2.1.1",
     "tailwind-merge": "2.6.0",
-    "lucide-react": "0.469.0"
+    "lucide-react": "0.469.0",
+    "jspdf": "2.5.2"
   },
   "devDependencies": {
     "@types/node": "22.10.2",
