@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getCategory, categories } from '@/lib/categories'
 import { getCalculatorsByCategory } from '@/lib/calculators'
+import { CategoryIllustration } from '@/components/illustrations/CategoryIllustration'
 
 export const revalidate = 3600
 
@@ -32,11 +33,19 @@ export default async function CategoriaPage({ params }: PageParams) {
 
   return (
     <main className="container-page py-12">
-      <nav className="text-sm text-slate-500">
-        <Link href="/">Inicio</Link> / <span>{category.name}</span>
-      </nav>
-      <h1 className="mt-2 text-3xl font-bold">Calculadoras de {category.name}</h1>
-      <p className="mt-2 text-slate-600 dark:text-slate-400">{category.description}</p>
+      <div className="flex flex-col items-center gap-6 sm:flex-row">
+        <div className="flex-1">
+          <nav className="text-sm text-slate-500">
+            <Link href="/">Inicio</Link> / <span>{category.name}</span>
+          </nav>
+          <h1 className="mt-2 text-3xl font-bold">Calculadoras de {category.name}</h1>
+          <p className="mt-2 text-slate-600 dark:text-slate-400">{category.description}</p>
+        </div>
+        <CategoryIllustration
+          categorySlug={category.slug}
+          className="hidden w-36 shrink-0 sm:block"
+        />
+      </div>
 
       {calcs.length === 0 ? (
         <p className="mt-8 text-slate-500">

@@ -6,6 +6,8 @@ import { irpfCalculator } from './irpf'
 import { hipotecaCalculator } from './hipoteca'
 import { prestamoCalculator } from './prestamo'
 import { ahorroCalculator } from './ahorro'
+import { gasolinaCalculator } from './gasolina'
+import { costeEmpresaCalculator } from './coste-empresa'
 
 // Para publicar una calculadora nueva: crea su módulo (ver README) y
 // añádela aquí. Home, sitemap, categorías, JSON-LD y buscador la recogen
@@ -19,6 +21,8 @@ export const calculators = {
   hipoteca: hipotecaCalculator,
   prestamo: prestamoCalculator,
   ahorro: ahorroCalculator,
+  gasolina: gasolinaCalculator,
+  'coste-empresa': costeEmpresaCalculator,
 } as const
 
 export type CalculatorSlug = keyof typeof calculators

@@ -12,6 +12,7 @@ import { CalculatorForm } from '@/components/calculator/CalculatorForm'
 import { FaqAccordion } from '@/components/calculator/FaqAccordion'
 import { IrpfTramosTable } from '@/components/calculator/IrpfTramosTable'
 import { SalariosReferenciaTable } from '@/components/calculator/SalariosReferenciaTable'
+import { CategoryIllustration } from '@/components/illustrations/CategoryIllustration'
 
 export const revalidate = 21600 // ISR: 6 horas
 
@@ -64,19 +65,25 @@ export default async function CalculadoraPage({ params }: PageParams) {
       {/* Hero centrado, al estilo "landing de conversión": título + subtítulo
           + confianza, con la calculadora inmediatamente debajo. */}
       <section className="border-b border-slate-200 bg-slate-50 py-10 dark:border-slate-800 dark:bg-slate-900/40">
-        <div className="container-page">
-          <nav className="text-sm text-slate-500">
-            <Link href="/">Inicio</Link> /{' '}
-            <Link href={`/categoria/${meta.categorySlug}`}>{meta.categorySlug}</Link> /{' '}
-            <span>{meta.title}</span>
-          </nav>
-          <h1 className="mt-2 text-3xl font-bold sm:text-4xl">{meta.title}</h1>
-          <p className="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">
-            {meta.metaDescription}
-          </p>
-          <p className="mt-3 text-xs font-medium uppercase tracking-wide text-brand-600">
-            Sin registro · Resultado instantáneo · Actualizada 2026
-          </p>
+        <div className="container-page flex flex-col items-center gap-6 sm:flex-row sm:items-center">
+          <div className="flex-1">
+            <nav className="text-sm text-slate-500">
+              <Link href="/">Inicio</Link> /{' '}
+              <Link href={`/categoria/${meta.categorySlug}`}>{meta.categorySlug}</Link> /{' '}
+              <span>{meta.title}</span>
+            </nav>
+            <h1 className="mt-2 text-3xl font-bold sm:text-4xl">{meta.title}</h1>
+            <p className="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">
+              {meta.metaDescription}
+            </p>
+            <p className="mt-3 text-xs font-medium uppercase tracking-wide text-brand-600">
+              Sin registro · Resultado instantáneo · Actualizada 2026
+            </p>
+          </div>
+          <CategoryIllustration
+            categorySlug={meta.categorySlug}
+            className="hidden w-40 shrink-0 sm:block md:w-48"
+          />
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getArticle, getAllArticleSlugs } from '@/lib/articles'
 import { getCalculator } from '@/lib/calculators'
+import { CategoryIllustration } from '@/components/illustrations/CategoryIllustration'
 
 export const revalidate = 43200
 
@@ -32,6 +33,8 @@ export default async function ArticlePage({ params }: PageParams) {
     .map((s) => getCalculator(s))
     .filter(Boolean)
 
+  const coverCategorySlug = relatedCalculators[0]?.meta.categorySlug
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -51,8 +54,14 @@ export default async function ArticlePage({ params }: PageParams) {
         <Link href="/blog">Blog</Link> / <span>{article.title}</span>
       </nav>
 
-      <article className="prose dark:prose-invert mt-4 max-w-none">
-        <h1>{article.title}</h1>
+      <div className="mt-4 flex flex-col items-center gap-6 sm:flex-row">
+        <h1 className="flex-1 text-3xl font-bold">{article.title}</h1>
+        {coverCategorySlug && (
+          <CategoryIllustration categorySlug={coverCategorySlug} className="w-32 shrink-0" />
+        )}
+      </div>
+
+      <article className="prose dark:prose-invert mt-6 max-w-none">
         {article.content.map((paragraph, i) => (
           <p key={i}>{paragraph}</p>
         ))}

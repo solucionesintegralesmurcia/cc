@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { calculators, getCalculatorsByCategory } from '@/lib/calculators'
 import { categories } from '@/lib/categories'
 import { articles } from '@/lib/articles'
+import { CategoryIllustration, hasIllustration } from '@/components/illustrations/CategoryIllustration'
 
 export const revalidate = 3600
 
@@ -40,8 +41,11 @@ export default function HomePage() {
               <Link
                 key={cat.slug}
                 href={`/categoria/${cat.slug}`}
-                className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-800"
+                className="flex items-center gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm font-medium transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-800"
               >
+                {hasIllustration(cat.slug) && (
+                  <CategoryIllustration categorySlug={cat.slug} className="w-9 shrink-0" />
+                )}
                 {cat.name}
               </Link>
             ))}

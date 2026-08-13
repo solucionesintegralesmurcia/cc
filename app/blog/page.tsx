@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { articles } from '@/lib/articles'
+import { getCalculator } from '@/lib/calculators'
+import { CategoryIllustration } from '@/components/illustrations/CategoryIllustration'
 
 export const revalidate = 43200 // 12h
 
@@ -19,12 +21,24 @@ export default function BlogPage() {
       </p>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
-        {articles.map((article) => (
-          <Link key={article.slug} href={`/blog/${article.slug}`} className="card hover:shadow-md">
-            <h2 className="font-semibold">{article.title}</h2>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{article.excerpt}</p>
-          </Link>
-        ))}
+        {articles.map((article) => {
+          const categorySlug = getCalculator(article.relatedCalculatorSlugs[0] ?? '')?.meta.categorySlug
+          return (
+            <Link
+              key={article.slug}
+              href={`/blog/${article.slug}`}
+              className="card flex gap-4 hover:shadow-md"
+            >
+              {categorySlug && (
+                <CategoryIllustration categorySlug={categorySlug} className="w-20 shrink-0" />
+              )}
+              <div>
+                <h2 className="font-semibold">{article.title}</h2>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{article.excerpt}</p>
+              </div>
+            </Link>
+          )
+        })}
       </div>
     </main>
   )
