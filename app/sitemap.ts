@@ -3,7 +3,7 @@ import { calculators } from '@/lib/calculators'
 import { categories } from '@/lib/categories'
 import { articles } from '@/lib/articles'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tudominio.es'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://calculadorasespana.es'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const calculatorUrls = Object.values(calculators).map((calc) => ({

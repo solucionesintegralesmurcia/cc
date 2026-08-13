@@ -10,7 +10,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tudominio.es'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://calculadorasespana.es'),
   title: {
     default: 'Calculadoras España | Nómina, Hipoteca, IRPF y más',
     template: '%s | Calculadoras España',

@@ -4,11 +4,11 @@
 // tu NIF/CIF y domicilio.
 export const siteConfig = {
   nombreSitio: 'Calculadoras España',
-  dominio: 'https://tudominio.es',
+  dominio: 'https://calculadorasespana.es',
   titular: 'NOMBRE APELLIDOS O RAZÓN SOCIAL', // ⚠️ rellenar
   nif: 'X0000000X', // ⚠️ rellenar (NIF/CIF)
   domicilio: 'Calle Ejemplo 1, 28001 Madrid, España', // ⚠️ rellenar
-  emailContacto: 'contacto@tudominio.es', // ⚠️ rellenar
+  emailContacto: 'contacto@calculadorasespana.es', // ⚠️ rellenar con tu email real si usas otro
   telefonoContacto: '', // opcional
   registroMercantil: '', // opcional, solo si eres sociedad
 

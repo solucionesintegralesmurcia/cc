@@ -1,6 +1,6 @@
 # Calculadoras España — Starter
 
-![CI](https://github.com/TU_USUARIO/calculadoras-espana/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/TU_USUARIO/calculadorasespana/actions/workflows/ci.yml/badge.svg)
 
 Next.js 15 + TypeScript + Tailwind. **8 calculadoras funcionales**, listado
 por categoría, blog con enlazado interno automático, sitemap/robots
@@ -36,7 +36,7 @@ git init
 git add .
 git commit -m "Scaffold: 8 calculadoras, categorias, blog, SEO, CI"
 git branch -M main
-git remote add origin https://github.com/TU_USUARIO/calculadoras-espana.git
+git remote add origin https://github.com/TU_USUARIO/calculadorasespana.git
 git push -u origin main
 ```
 

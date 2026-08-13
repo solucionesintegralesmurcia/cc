@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import type { CalculatorMeta, FaqItem } from '@/lib/calculators/types'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tudominio.es'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://calculadorasespana.es'
 const SITE_NAME = 'Calculadoras España'
 
 export function generateCalculatorMetadata(meta: CalculatorMeta): Metadata {
