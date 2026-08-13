@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-200 py-12 dark:border-slate-800">
       <div className="container-page">
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="text-lg font-bold tracking-tight">
               Calculadoras<span className="text-brand-500">España</span>
@@ -39,6 +39,37 @@ export function Footer() {
               <li>
                 <Link href="/blog" className="hover:text-brand-600">
                   Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/sobre-nosotros" className="hover:text-brand-600">
+                  Sobre nosotros
+                </Link>
+              </li>
+              <li>
+                <Link href="/contacto" className="hover:text-brand-600">
+                  Contacto
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold">Legal</h3>
+            <ul className="mt-3 space-y-2 text-sm text-slate-500">
+              <li>
+                <Link href="/aviso-legal" className="hover:text-brand-600">
+                  Aviso legal
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacidad" className="hover:text-brand-600">
+                  Privacidad
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookies" className="hover:text-brand-600">
+                  Cookies
                 </Link>
               </li>
             </ul>
