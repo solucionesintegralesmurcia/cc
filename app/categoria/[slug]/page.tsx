@@ -17,10 +17,15 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
   const { slug } = await params
   const category = getCategory(slug)
   if (!category) return {}
+  const isEmpty = getCalculatorsByCategory(category.slug).length === 0
   return {
     title: `Calculadoras de ${category.name}`,
     description: category.description,
     alternates: { canonical: `/categoria/${category.slug}` },
+    // Las categorías sin calculadoras todavía no aportan contenido real:
+    // las dejamos accesibles (por si alguien tiene el link) pero fuera del
+    // índice de Google hasta que tengan al menos una calculadora publicada.
+    robots: isEmpty ? { index: false, follow: true } : { index: true, follow: true },
   }
 }
 

@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { categories } from '@/lib/categories'
+import { getCalculatorsByCategory } from '@/lib/calculators'
 
 export function Footer() {
+  const categoriesWithContent = categories.filter((cat) => getCalculatorsByCategory(cat.slug).length > 0)
+
   return (
     <footer className="border-t border-slate-200 py-12 dark:border-slate-800">
       <div className="container-page">
@@ -28,7 +31,7 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold">Categorías</h3>
             <ul className="mt-3 space-y-2 text-sm text-slate-500">
-              {categories.map((cat) => (
+              {categoriesWithContent.map((cat) => (
                 <li key={cat.slug}>
                   <Link href={`/categoria/${cat.slug}`} className="hover:text-brand-600">
                     {cat.name}
@@ -75,6 +78,11 @@ export function Footer() {
               <li>
                 <Link href="/aviso-legal" className="hover:text-brand-600">
                   Aviso legal
+                </Link>
+              </li>
+              <li>
+                <Link href="/terminos-y-condiciones" className="hover:text-brand-600">
+                  Términos y condiciones
                 </Link>
               </li>
               <li>

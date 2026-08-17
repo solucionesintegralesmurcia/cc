@@ -17,7 +17,7 @@ export function generateCalculatorMetadata(meta: CalculatorMeta): Metadata {
       siteName: SITE_NAME,
       locale: 'es_ES',
       type: 'website',
-      images: [`${SITE_URL}/api/og?slug=${meta.slug}`],
+      images: [`${SITE_URL}/og-image.png`],
     },
     twitter: {
       card: 'summary_large_image',

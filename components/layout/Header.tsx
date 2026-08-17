@@ -1,12 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { categories } from '@/lib/categories'
+import { getCalculatorsByCategory } from '@/lib/calculators'
 import { MobileMenu } from './MobileMenu'
 
 export function Header() {
-  // Solo mostramos en el menú principal las categorías que ya tienen
-  // contenido, para no enlazar a secciones vacías.
-  const mainCategories = categories.slice(0, 6)
+  // Solo mostramos categorías que realmente tienen calculadoras publicadas,
+  // calculado dinámicamente (no una posición fija), para no enlazar nunca
+  // a una sección vacía aunque cambie el orden o número de categorías.
+  const categoriesWithContent = categories.filter((cat) => getCalculatorsByCategory(cat.slug).length > 0)
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
@@ -31,7 +33,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-          {mainCategories.map((cat) => (
+          {categoriesWithContent.map((cat) => (
             <Link
               key={cat.slug}
               href={`/categoria/${cat.slug}`}
@@ -54,7 +56,7 @@ export function Header() {
           </Link>
         </div>
 
-        <MobileMenu categories={categories} />
+        <MobileMenu categories={categoriesWithContent} />
       </div>
     </header>
   )

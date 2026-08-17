@@ -22,6 +22,16 @@ export const metadata: Metadata = {
     icon: [{ url: '/favicon-32.png', sizes: '32x32', type: 'image/png' }],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    siteName: 'Calculadoras España',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Calculadoras España' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/og-image.png'],
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
