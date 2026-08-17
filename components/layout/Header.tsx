@@ -3,12 +3,21 @@ import Image from 'next/image'
 import { categories } from '@/lib/categories'
 import { getCalculatorsByCategory } from '@/lib/calculators'
 import { MobileMenu } from './MobileMenu'
+import { MoreCategoriesDropdown } from './MoreCategoriesDropdown'
+
+const MAX_CATEGORIAS_VISIBLES = 5
 
 export function Header() {
   // Solo mostramos categorías que realmente tienen calculadoras publicadas,
   // calculado dinámicamente (no una posición fija), para no enlazar nunca
   // a una sección vacía aunque cambie el orden o número de categorías.
   const categoriesWithContent = categories.filter((cat) => getCalculatorsByCategory(cat.slug).length > 0)
+
+  // Con muchas categorías el menú se desborda: mostramos las primeras
+  // directamente y el resto bajo un desplegable "Más", igual que hacen
+  // sitios de referencia del sector con decenas de categorías.
+  const visibleCategories = categoriesWithContent.slice(0, MAX_CATEGORIAS_VISIBLES)
+  const overflowCategories = categoriesWithContent.slice(MAX_CATEGORIAS_VISIBLES)
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
@@ -33,7 +42,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-          {categoriesWithContent.map((cat) => (
+          {visibleCategories.map((cat) => (
             <Link
               key={cat.slug}
               href={`/categoria/${cat.slug}`}
@@ -42,6 +51,9 @@ export function Header() {
               {cat.name}
             </Link>
           ))}
+          {overflowCategories.length > 0 && (
+            <MoreCategoriesDropdown categories={overflowCategories} />
+          )}
           <Link
             href="/blog"
             className="text-slate-600 transition hover:text-brand-600 dark:text-slate-300"

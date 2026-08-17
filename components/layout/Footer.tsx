@@ -9,8 +9,8 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-200 py-12 dark:border-slate-800">
       <div className="container-page">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2">
               <Image
                 src="/logo-icon-512.png"
@@ -28,9 +28,9 @@ export function Footer() {
             </p>
           </div>
 
-          <div>
+          <div className="lg:col-span-2">
             <h3 className="text-sm font-semibold">Categorías</h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-500">
+            <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-slate-500">
               {categoriesWithContent.map((cat) => (
                 <li key={cat.slug}>
                   <Link href={`/categoria/${cat.slug}`} className="hover:text-brand-600">
