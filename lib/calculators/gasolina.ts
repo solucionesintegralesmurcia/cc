@@ -98,5 +98,6 @@ export const gasolinaCalculator: CalculatorDefinition<GasolinaInput, GasolinaBre
         'Introduce el número total de personas (incluido el conductor) en el campo correspondiente, y la calculadora divide el coste total del trayecto entre todos a partes iguales.',
     },
   ],
+  breakdownUnits: { distanciaTotalKm: 'NUMERO', litrosConsumidos: 'NUMERO' },
   calculate,
 }

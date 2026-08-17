@@ -58,11 +58,7 @@ export function CalculatorForm({ slug }: Props) {
     Object.entries(result.breakdown).forEach(([key, value]) => {
       const label = formatLabel(key)
       const displayValue =
-        typeof value === 'number'
-          ? key.toLowerCase().includes('porcentaje') || key.toLowerCase().includes('tipo')
-            ? `${value}%`
-            : value.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })
-          : String(value)
+        typeof value === 'number' ? formatBreakdownValue(key, value, calculator!) : String(value)
       doc.text(label, 14, y)
       doc.text(displayValue, 140, y, { align: 'right' })
       y += 8
@@ -161,12 +157,7 @@ export function CalculatorForm({ slug }: Props) {
               <div key={key} className="flex justify-between gap-4">
                 <dt className="text-slate-500">{formatLabel(key)}</dt>
                 <dd className="text-right">
-                  {typeof value === 'number'
-                    ? key.toLowerCase().includes('porcentaje') ||
-                      key.toLowerCase().includes('tipo')
-                      ? `${value}%`
-                      : value.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })
-                    : String(value)}
+                  {typeof value === 'number' ? formatBreakdownValue(key, value, calculator) : String(value)}
                 </dd>
               </div>
             ))}
@@ -200,6 +191,18 @@ function formatValue(value: number, unit: string) {
   if (unit === 'DIAS') return `${value} días`
   if (unit === 'ANIOS') return `${value} años`
   return String(value)
+}
+
+// Formatea un valor del desglose respetando `breakdownUnits` de la
+// calculadora si existe; si no, usa una heurística por nombre de campo
+// (compatibilidad con calculadoras que no declaran `breakdownUnits`).
+function formatBreakdownValue(key: string, value: number, calculator: any): string {
+  const explicitUnit = calculator?.breakdownUnits?.[key]
+  if (explicitUnit) return formatValue(value, explicitUnit)
+
+  const k = key.toLowerCase()
+  if (k.includes('porcentaje') || k.includes('tipo')) return `${value}%`
+  return value.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })
 }
 
 // Convierte camelCase a una etiqueta legible en español (fallback genérico

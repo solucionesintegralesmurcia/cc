@@ -92,5 +92,6 @@ export const hipotecaCalculator: CalculatorDefinition<HipotecaInput, HipotecaBre
         'Sirve para estimar la cuota en un momento dado. En una hipoteca variable, el tipo de interés (y por tanto la cuota) puede cambiar en cada revisión según el índice de referencia (normalmente el Euríbor).',
     },
   ],
+  breakdownUnits: { numeroCuotas: 'NUMERO' },
   calculate,
 }

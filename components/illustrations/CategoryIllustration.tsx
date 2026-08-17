@@ -205,6 +205,54 @@ function ViviendaIllustration() {
   )
 }
 
+function FamiliaIllustration() {
+  return (
+    <Base>
+      <circle cx="95" cy="80" r="16" fill={PALETTE.navy} />
+      <path d="M65 150 Q65 115 95 115 Q125 115 125 150 Z" fill={PALETTE.navy} />
+      <circle cx="150" cy="90" r="12" fill={PALETTE.gold} />
+      <path d="M128 150 Q128 122 150 122 Q172 122 172 150 Z" fill={PALETTE.gold} />
+    </Base>
+  )
+}
+
+function SaludIllustration() {
+  return (
+    <Base>
+      <path
+        d="M120 155 C80 128 55 105 55 78 C55 58 71 45 88 45 C102 45 113 53 120 65 C127 53 138 45 152 45 C169 45 185 58 185 78 C185 105 160 128 120 155 Z"
+        fill={PALETTE.gold}
+      />
+      <rect x="112" y="70" width="16" height="36" fill="white" />
+      <rect x="102" y="80" width="36" height="16" fill="white" />
+    </Base>
+  )
+}
+
+function SocialIllustration() {
+  return (
+    <Base>
+      <path
+        d="M120 45 L170 65 V100 C170 130 148 150 120 160 C92 150 70 130 70 100 V65 Z"
+        fill={PALETTE.navy}
+      />
+      <path d="M100 105 L114 119 L142 88" fill="none" stroke={PALETTE.gold} strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
+    </Base>
+  )
+}
+
+function CotidianoIllustration() {
+  return (
+    <Base>
+      <circle cx="120" cy="105" r="55" fill={PALETTE.navy} />
+      <circle cx="120" cy="105" r="40" fill={PALETTE.bg} />
+      <text x="120" y="115" fontSize="34" fill={PALETTE.gold} textAnchor="middle" fontWeight="bold">
+        %
+      </text>
+    </Base>
+  )
+}
+
 const ILLUSTRATIONS: Record<string, () => React.JSX.Element> = {
   laboral: LaboralIllustration,
   fiscal: FiscalIllustration,
@@ -218,6 +266,10 @@ const ILLUSTRATIONS: Record<string, () => React.JSX.Element> = {
   'finanzas-personales': FinanzasPersonalesIllustration,
   impuestos: ImpuestosIllustration,
   vivienda: ViviendaIllustration,
+  familia: FamiliaIllustration,
+  salud: SaludIllustration,
+  social: SocialIllustration,
+  cotidiano: CotidianoIllustration,
 }
 
 export function CategoryIllustration({

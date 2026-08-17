@@ -119,5 +119,6 @@ export const plusvaliaCalculator: CalculatorDefinition<PlusvaliaInput, Plusvalia
         'No, cada ayuntamiento fija su propio tipo dentro del máximo legal del 30%. Consulta la ordenanza fiscal de tu municipio para el valor exacto.',
     },
   ],
+  breakdownUnits: { coeficienteAplicado: 'NUMERO' },
   calculate,
 }

@@ -20,6 +20,10 @@ export const categories: Category[] = [
   { slug: 'impuestos', name: 'Impuestos', description: 'Otros impuestos y tasas.' },
   { slug: 'vivienda', name: 'Vivienda', description: 'Costes asociados a la compra o alquiler de vivienda.' },
   { slug: 'ahorro', name: 'Ahorro', description: 'Simuladores de ahorro e interés compuesto.' },
+  { slug: 'familia', name: 'Familia y Maternidad', description: 'Bajas, ayudas y prestaciones familiares.' },
+  { slug: 'salud', name: 'Salud y Bienestar', description: 'Calculadoras básicas de salud y bienestar.' },
+  { slug: 'social', name: 'Social y Prestaciones', description: 'Paro, jubilación y otras prestaciones sociales.' },
+  { slug: 'cotidiano', name: 'Cotidiano', description: 'Porcentajes, propinas, descuentos y cálculos del día a día.' },
 ]
 
 export function getCategory(slug: string) {

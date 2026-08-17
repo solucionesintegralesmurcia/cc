@@ -99,5 +99,11 @@ export const indemnizacionCalculator: CalculatorDefinition<
         'La indemnización está exenta de IRPF hasta los límites que establece la ley (con un máximo de 180.000€); el exceso sobre esos límites sí tributa como rendimiento del trabajo.',
     },
   ],
+  breakdownUnits: {
+    diasPorAnioTrabajado: 'NUMERO',
+    diasIndemnizacionSinTope: 'NUMERO',
+    topeMesesSalario: 'NUMERO',
+    diasIndemnizacionAplicados: 'NUMERO',
+  },
   calculate,
 }

@@ -112,5 +112,6 @@ export const cuotaAutonomoCalculator: CalculatorDefinition<CuotaAutonomoInput, C
         'Usa una cuota media orientativa por cada uno de los tramos oficiales de rendimiento neto. La Seguridad Social publica una cuota mínima y máxima dentro de cada tramo, y puedes elegir cualquier valor entre ambas; consulta tu caso exacto en la sede de la Seguridad Social.',
     },
   ],
+  breakdownUnits: { mesesTarifaPlana: 'NUMERO' },
   calculate,
 }

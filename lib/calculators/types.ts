@@ -21,7 +21,7 @@ export interface CalculationResult<T = Record<string, number>> {
   main: {
     label: string
     value: number
-    unit: 'EUR' | 'PORCENTAJE' | 'DIAS' | 'ANIOS'
+    unit: 'EUR' | 'PORCENTAJE' | 'DIAS' | 'ANIOS' | 'NUMERO'
   }
   breakdown: T
 }
@@ -48,4 +48,11 @@ export interface CalculatorDefinition<TInput, TBreakdown> {
   fields: FieldDef[]
   defaultValues: TInput
   calculate: (input: TInput) => CalculationResult<TBreakdown>
+  /**
+   * Anula el formato por defecto (EUR) para claves concretas del desglose.
+   * Necesario para campos que no son dinero: días, meses, kilómetros,
+   * litros, coeficientes... Sin esto, el formulario genérico asume que
+   * cualquier número del desglose es un importe en euros.
+   */
+  breakdownUnits?: Record<string, 'EUR' | 'PORCENTAJE' | 'NUMERO' | 'DIAS' | 'ANIOS'>
 }

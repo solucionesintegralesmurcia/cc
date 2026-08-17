@@ -51,7 +51,7 @@ export default function HomePage() {
       </section>
 
       {activeCategories.map((cat) => {
-        const calcs = getCalculatorsByCategory(cat.slug)
+        const calcs = getCalculatorsByCategory(cat.slug).slice(0, 3)
         return (
           <section key={cat.slug} className="border-t border-slate-200 py-12 dark:border-slate-800">
             <div className="container-page">

@@ -13,6 +13,15 @@ import { rentabilidadCalculator } from './rentabilidad-inversion'
 import { presupuestoCalculator } from './presupuesto-mensual'
 import { plusvaliaCalculator } from './plusvalia-municipal'
 import { gastosViviendaCalculator } from './gastos-compraventa-vivienda'
+import { horasExtraCalculator } from './horas-extra'
+import { paroCalculator } from './prestacion-paro'
+import { jubilacionCalculator } from './pension-jubilacion'
+import { imcCalculator } from './imc'
+import { porcentajesCalculator } from './porcentajes'
+import { propinasCalculator } from './propinas'
+import { descuentosCalculator } from './descuentos-rebajas'
+import { fianzaAlquilerCalculator } from './fianza-alquiler'
+import { bajaMaternidadCalculator } from './baja-maternidad-paternidad'
 
 // Para publicar una calculadora nueva: crea su módulo (ver README) y
 // añádela aquí. Home, sitemap, categorías, JSON-LD y buscador la recogen
@@ -33,6 +42,15 @@ export const calculators = {
   'presupuesto-mensual': presupuestoCalculator,
   'plusvalia-municipal': plusvaliaCalculator,
   'gastos-compraventa-vivienda': gastosViviendaCalculator,
+  'horas-extra': horasExtraCalculator,
+  'prestacion-paro': paroCalculator,
+  'pension-jubilacion': jubilacionCalculator,
+  imc: imcCalculator,
+  porcentajes: porcentajesCalculator,
+  propinas: propinasCalculator,
+  'descuentos-rebajas': descuentosCalculator,
+  'fianza-alquiler': fianzaAlquilerCalculator,
+  'baja-maternidad-paternidad': bajaMaternidadCalculator,
 } as const
 
 export type CalculatorSlug = keyof typeof calculators
