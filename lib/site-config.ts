@@ -1,12 +1,13 @@
-// El NIF y el domicilio son datos legales reales que exige la LSSI-CE para
-// el Aviso Legal: NO se inventan, hay que rellenarlos con los tuyos antes
-// de publicar. El resto ya está actualizado con los datos que diste.
+// El NIF y el domicilio ya NO se muestran en el Aviso Legal (siguiendo el
+// mismo criterio que otros sitios similares sin actividad económica formal
+// dada de alta). Quedan aquí por si en el futuro te das de alta como
+// autónomo/empresa y quieres publicarlos.
 export const siteConfig = {
   nombreSitio: 'Calculadoras España',
   dominio: 'https://calculadorasespana.es',
   titular: 'Pablo González',
-  nif: 'X0000000X', // ⚠️ rellenar con tu NIF/CIF real (obligatorio para el Aviso Legal)
-  domicilio: 'Calle Ejemplo 1, 28001 Madrid, España', // ⚠️ rellenar con tu domicilio real
+  nif: '', // opcional — solo si tienes actividad económica dada de alta
+  domicilio: '', // opcional — solo si tienes actividad económica dada de alta
   emailContacto: 'calculadorasespana@gmail.es',
   telefonoContacto: '', // opcional
   registroMercantil: '', // opcional, solo si eres sociedad

@@ -28,12 +28,6 @@ export default function AvisoLegalPage() {
             <strong>Titular:</strong> {siteConfig.titular}
           </li>
           <li>
-            <strong>NIF/CIF:</strong> {siteConfig.nif}
-          </li>
-          <li>
-            <strong>Domicilio:</strong> {siteConfig.domicilio}
-          </li>
-          <li>
             <strong>Correo electrónico:</strong> {siteConfig.emailContacto}
           </li>
           <li>
