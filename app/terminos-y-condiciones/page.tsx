@@ -18,97 +18,91 @@ export default function TerminosPage() {
         </p>
 
         <p>
-          Al acceder y usar {siteConfig.nombreSitio} ({siteConfig.dominio}) aceptas los siguientes
-          términos. Si no estás de acuerdo con alguno de ellos, te pedimos que no utilices el
-          sitio.
+          Estos términos regulan el uso del sitio web {siteConfig.nombreSitio} ({siteConfig.dominio}
+          , en adelante "el Sitio"), operado por {siteConfig.titular}, con correo de contacto{' '}
+          {siteConfig.emailContacto}. Al acceder o usar el Sitio, aceptas estos términos en su
+          totalidad.
+
         </p>
 
-        <h2>1. Descripción del servicio</h2>
+        <h2>1. Naturaleza del servicio</h2>
         <p>
-          {siteConfig.nombreSitio} ofrece calculadoras online gratuitas relacionadas con nómina,
-          fiscalidad, hipotecas, préstamos, ahorro y otras materias financieras y laborales en
-          España, junto con contenido informativo (artículos de blog) relacionado. El acceso es
-          gratuito y no requiere registro.
+          El Sitio ofrece calculadoras online y contenido informativo gratuito sobre nómina,
+          fiscalidad, hipotecas, préstamos, ahorro y otros asuntos financieros y laborales en
+          España. El uso del Sitio es gratuito y no requiere registro.
         </p>
 
-        <h2>2. Naturaleza orientativa de los resultados</h2>
+        <h2>2. Los resultados son orientativos, no asesoramiento profesional</h2>
         <p>
-          Los cálculos que ofrece este sitio son <strong>estimaciones orientativas</strong> basadas
-          en la normativa vigente en el momento de su publicación. No constituyen asesoramiento
-          fiscal, laboral, financiero ni legal, y no sustituyen el cálculo oficial de la Agencia
-          Tributaria, la Seguridad Social, tu empresa o un profesional colegiado. El uso de los
-          resultados para tomar decisiones es responsabilidad exclusiva del usuario.
+          Todas las calculadoras, cifras, ejemplos y explicaciones de este Sitio se ofrecen con
+          fines meramente informativos y orientativos. No constituyen asesoramiento fiscal, legal,
+          laboral ni financiero, y no sustituyen la consulta con un profesional colegiado (abogado,
+          graduado social, asesor fiscal o gestor administrativo).
+        </p>
+        <p>
+          Aunque procuramos que los cálculos reflejen fielmente la normativa vigente, no
+          garantizamos la exactitud, integridad o vigencia de los resultados. Antes de tomar
+          cualquier decisión con consecuencias económicas o legales, verifica siempre la
+          información con el organismo oficial correspondiente (Agencia Tributaria, Seguridad
+          Social, etc.) o con un profesional cualificado.
         </p>
 
-        <h2>3. Uso permitido</h2>
-        <p>Al usar el sitio, te comprometes a:</p>
-        <ul>
-          <li>No usar las calculadoras ni el contenido con fines ilícitos o fraudulentos.</li>
-          <li>
-            No intentar extraer de forma masiva y automatizada (scraping) el contenido del sitio
-            sin autorización previa por escrito.
-          </li>
-          <li>No interferir con el funcionamiento técnico del sitio ni intentar vulnerar su seguridad.</li>
-          <li>No reproducir ni redistribuir el contenido con fines comerciales sin autorización.</li>
-        </ul>
+        <h2>3. Limitación de responsabilidad</h2>
+        <p>
+          En la máxima medida permitida por la ley, {siteConfig.titular} no será responsable de
+          ningún daño, pérdida o perjuicio, directo o indirecto, derivado del uso de este Sitio o
+          de decisiones tomadas basándose en la información o los cálculos que ofrece. El uso del
+          Sitio y de sus calculadoras es bajo tu propia responsabilidad.
+        </p>
 
         <h2>4. Propiedad intelectual</h2>
         <p>
-          El código, diseño, textos, fórmulas explicadas y demás contenido original de{' '}
-          {siteConfig.nombreSitio} son propiedad de {siteConfig.titular} y están protegidos por la
-          normativa de propiedad intelectual. Puedes compartir enlaces a nuestras páginas
-          libremente; para reproducir contenido, contáctanos primero.
+          Los textos, calculadoras, diseño y demás contenido original de este Sitio son propiedad
+          de {siteConfig.titular} y están protegidos por la normativa española e internacional de
+          propiedad intelectual. Queda prohibida su reproducción, distribución o modificación
+          total o parcial sin autorización previa por escrito, salvo que se indique expresamente
+          lo contrario.
         </p>
 
-        <h2>5. Disponibilidad del servicio</h2>
+        <h2>5. Enlaces a terceros</h2>
         <p>
-          Nos esforzamos por mantener el sitio disponible y actualizado, pero no garantizamos un
-          funcionamiento ininterrumpido ni libre de errores. Nos reservamos el derecho de
-          modificar, suspender o interrumpir el servicio, total o parcialmente, en cualquier
-          momento y sin previo aviso.
+          El Sitio puede incluir enlaces a páginas web de organismos oficiales o terceros sobre
+          los que no tenemos control. No nos hacemos responsables del contenido, la disponibilidad
+          ni las prácticas de privacidad de esos sitios externos.
         </p>
 
-        <h2>6. Limitación de responsabilidad</h2>
+        <h2>6. Publicidad</h2>
         <p>
-          {siteConfig.titular} no será responsable de ningún daño, directo o indirecto, derivado
-          del uso o la imposibilidad de uso del sitio, ni de decisiones tomadas a partir de los
-          resultados de nuestras calculadoras. Esto incluye, entre otros, pérdidas económicas
-          derivadas de decisiones fiscales, laborales o financieras basadas exclusivamente en
-          nuestras estimaciones.
+          Este Sitio muestra anuncios a través de redes publicitarias como Google AdSense. La
+          publicidad no influye en los resultados de las calculadoras ni en el contenido
+          editorial. Puedes consultar cómo se usan las cookies publicitarias en la{' '}
+          <a href="/privacidad">Política de Privacidad</a>.
         </p>
 
-        <h2>7. Enlaces a terceros</h2>
+        <h2>7. Uso permitido</h2>
         <p>
-          El sitio puede incluir enlaces a páginas de terceros (fuentes oficiales, artículos
-          citados). No nos hacemos responsables del contenido ni de las políticas de privacidad de
-          esos sitios externos.
+          Puedes usar el Sitio para fines personales y no comerciales. No está permitido extraer
+          de forma automatizada (scraping) el contenido del Sitio, ni reproducir las calculadoras
+          en otro sitio web sin autorización.
         </p>
 
-        <h2>8. Publicidad</h2>
+        <h2>8. Modificaciones</h2>
         <p>
-          Este sitio muestra anuncios de terceros (Google AdSense) para financiarse. Consulta
-          nuestra <a href="/privacidad">Política de Privacidad</a> para más información sobre el
-          tratamiento de datos asociado a la publicidad.
+          Podemos actualizar estos términos en cualquier momento para reflejar cambios normativos
+          o del propio Sitio. La fecha de "última actualización" indicada arriba refleja la
+          versión vigente.
         </p>
 
-        <h2>9. Modificaciones de estos términos</h2>
+        <h2>9. Legislación aplicable</h2>
         <p>
-          Podemos actualizar estos Términos y Condiciones cuando sea necesario. Los cambios serán
-          efectivos desde su publicación en esta página, indicada por la fecha de "última
-          actualización".
+          Estos términos se rigen por la legislación española. Para cualquier controversia
+          derivada del uso del Sitio, las partes se someterán a los juzgados y tribunales que
+          correspondan según la normativa de protección de consumidores aplicable.
         </p>
 
-        <h2>10. Legislación aplicable</h2>
+        <h2>10. Contacto</h2>
         <p>
-          Estos términos se rigen por la legislación española. Para cualquier controversia, las
-          partes se someten a los juzgados y tribunales competentes según la normativa de
-          protección de consumidores y usuarios.
-        </p>
-
-        <h2>11. Contacto</h2>
-        <p>
-          Para cualquier duda sobre estos términos, escríbenos a {siteConfig.emailContacto} o desde
-          nuestra <a href="/contacto">página de contacto</a>.
+          Para cualquier duda sobre estos términos escríbenos a {siteConfig.emailContacto}.
         </p>
       </article>
     </main>

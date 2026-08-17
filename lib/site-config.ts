@@ -1,20 +1,19 @@
-// Rellena estos datos con los reales antes de publicar. AdSense y la ley
-// (LSSI-CE, LOPDGDD) exigen que sean datos verdaderos e identificables:
-// un titular real, un email de contacto real y, si eres autónomo/empresa,
-// tu NIF/CIF y domicilio.
+// El NIF y el domicilio son datos legales reales que exige la LSSI-CE para
+// el Aviso Legal: NO se inventan, hay que rellenarlos con los tuyos antes
+// de publicar. El resto ya está actualizado con los datos que diste.
 export const siteConfig = {
   nombreSitio: 'Calculadoras España',
   dominio: 'https://calculadorasespana.es',
-  titular: 'NOMBRE APELLIDOS O RAZÓN SOCIAL', // ⚠️ rellenar
-  nif: 'X0000000X', // ⚠️ rellenar (NIF/CIF)
-  domicilio: 'Calle Ejemplo 1, 28001 Madrid, España', // ⚠️ rellenar
-  emailContacto: 'contacto@calculadorasespana.es', // ⚠️ rellenar con tu email real si usas otro
+  titular: 'Pablo González',
+  nif: 'X0000000X', // ⚠️ rellenar con tu NIF/CIF real (obligatorio para el Aviso Legal)
+  domicilio: 'Calle Ejemplo 1, 28001 Madrid, España', // ⚠️ rellenar con tu domicilio real
+  emailContacto: 'calculadorasespana@gmail.es',
   telefonoContacto: '', // opcional
   registroMercantil: '', // opcional, solo si eres sociedad
 
   autor: {
-    nombre: 'NOMBRE DEL AUTOR', // ⚠️ rellenar — AdSense exige autoría real y verificable
-    bio: 'Breve biografía real: quién eres, tu experiencia con nóminas/fiscalidad/finanzas, por qué escribes sobre esto.',
+    nombre: 'Pablo González',
+    bio: 'Desarrollador y creador de Calculadoras España. Construyo y reviso cada calculadora personalmente, contrastando fórmulas con fuentes oficiales (BOE, Seguridad Social, Agencia Tributaria) antes de publicarlas.',
     fotoUrl: '/autor.jpg', // ⚠️ sube una foto real a /public/autor.jpg
   },
 
