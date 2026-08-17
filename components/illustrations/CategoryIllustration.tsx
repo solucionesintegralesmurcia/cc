@@ -124,6 +124,87 @@ function EmpresasIllustration() {
   )
 }
 
+function AutonomosIllustration() {
+  return (
+    <Base>
+      <circle cx="120" cy="80" r="22" fill={PALETTE.gold} />
+      <path d="M75 158 Q75 115 120 115 Q165 115 165 158 Z" fill={PALETTE.navy} />
+      <rect x="105" y="95" width="30" height="22" rx="4" fill={PALETTE.navyDark} />
+      <circle cx="150" cy="130" r="16" fill={PALETTE.goldLight} />
+      <text x="150" y="136" fontSize="16" fill={PALETTE.navyDark} textAnchor="middle" fontWeight="bold">
+        €
+      </text>
+    </Base>
+  )
+}
+
+function InversionesIllustration() {
+  return (
+    <Base>
+      <polyline
+        points="65,140 95,110 120,125 150,85 175,95"
+        fill="none"
+        stroke={PALETTE.gold}
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="175" cy="95" r="8" fill={PALETTE.goldLight} />
+      <rect x="65" y="140" width="16" height="20" fill={PALETTE.navy} />
+      <rect x="95" y="120" width="16" height="40" fill={PALETTE.navy} />
+      <rect x="125" y="130" width="16" height="30" fill={PALETTE.navy} />
+      <rect x="155" y="100" width="16" height="60" fill={PALETTE.navy} />
+    </Base>
+  )
+}
+
+function FinanzasPersonalesIllustration() {
+  return (
+    <Base>
+      <circle cx="120" cy="115" r="48" fill="none" stroke={PALETTE.navy} strokeWidth="14" />
+      <path
+        d="M120 67 A48 48 0 0 1 163 138"
+        fill="none"
+        stroke={PALETTE.gold}
+        strokeWidth="14"
+        strokeLinecap="round"
+      />
+      <path
+        d="M163 138 A48 48 0 0 1 90 158"
+        fill="none"
+        stroke={PALETTE.goldLight}
+        strokeWidth="14"
+        strokeLinecap="round"
+      />
+    </Base>
+  )
+}
+
+function ImpuestosIllustration() {
+  return (
+    <Base>
+      <rect x="78" y="55" width="84" height="105" rx="4" fill="white" stroke={PALETTE.navy} strokeWidth="4" />
+      <line x1="92" y1="75" x2="148" y2="75" stroke={PALETTE.navy} strokeWidth="4" strokeLinecap="round" />
+      <line x1="92" y1="90" x2="148" y2="90" stroke={PALETTE.navy} strokeWidth="4" strokeLinecap="round" />
+      <line x1="92" y1="105" x2="130" y2="105" stroke={PALETTE.navy} strokeWidth="4" strokeLinecap="round" />
+      <circle cx="140" cy="135" r="20" fill={PALETTE.gold} />
+      <path d="M133 135 L138 141 L149 128" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+    </Base>
+  )
+}
+
+function ViviendaIllustration() {
+  return (
+    <Base>
+      <polygon points="120,50 178,92 62,92" fill={PALETTE.navyDark} />
+      <rect x="72" y="92" width="96" height="68" fill={PALETTE.navy} />
+      <rect x="105" y="120" width="30" height="40" fill={PALETTE.goldLight} />
+      <rect x="82" y="102" width="16" height="16" fill={PALETTE.gold} />
+      <rect x="142" y="102" width="16" height="16" fill={PALETTE.gold} />
+    </Base>
+  )
+}
+
 const ILLUSTRATIONS: Record<string, () => React.JSX.Element> = {
   laboral: LaboralIllustration,
   fiscal: FiscalIllustration,
@@ -132,6 +213,11 @@ const ILLUSTRATIONS: Record<string, () => React.JSX.Element> = {
   ahorro: AhorroIllustration,
   vehiculos: VehiculosIllustration,
   empresas: EmpresasIllustration,
+  autonomos: AutonomosIllustration,
+  inversiones: InversionesIllustration,
+  'finanzas-personales': FinanzasPersonalesIllustration,
+  impuestos: ImpuestosIllustration,
+  vivienda: ViviendaIllustration,
 }
 
 export function CategoryIllustration({

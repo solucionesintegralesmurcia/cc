@@ -8,6 +8,11 @@ import { prestamoCalculator } from './prestamo'
 import { ahorroCalculator } from './ahorro'
 import { gasolinaCalculator } from './gasolina'
 import { costeEmpresaCalculator } from './coste-empresa'
+import { cuotaAutonomoCalculator } from './cuota-autonomos'
+import { rentabilidadCalculator } from './rentabilidad-inversion'
+import { presupuestoCalculator } from './presupuesto-mensual'
+import { plusvaliaCalculator } from './plusvalia-municipal'
+import { gastosViviendaCalculator } from './gastos-compraventa-vivienda'
 
 // Para publicar una calculadora nueva: crea su módulo (ver README) y
 // añádela aquí. Home, sitemap, categorías, JSON-LD y buscador la recogen
@@ -23,6 +28,11 @@ export const calculators = {
   ahorro: ahorroCalculator,
   gasolina: gasolinaCalculator,
   'coste-empresa': costeEmpresaCalculator,
+  'cuota-autonomos': cuotaAutonomoCalculator,
+  'rentabilidad-inversion': rentabilidadCalculator,
+  'presupuesto-mensual': presupuestoCalculator,
+  'plusvalia-municipal': plusvaliaCalculator,
+  'gastos-compraventa-vivienda': gastosViviendaCalculator,
 } as const
 
 export type CalculatorSlug = keyof typeof calculators

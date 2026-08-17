@@ -3,6 +3,7 @@ import { calculators, getCalculatorsByCategory } from '@/lib/calculators'
 import { categories } from '@/lib/categories'
 import { articles } from '@/lib/articles'
 import { CategoryIllustration, hasIllustration } from '@/components/illustrations/CategoryIllustration'
+import { CalculatorSearch } from '@/components/calculator/CalculatorSearch'
 
 export const revalidate = 3600
 
@@ -24,11 +25,7 @@ export default function HomePage() {
             Calcula · Compara · Decide mejor
           </p>
           <div className="mt-8">
-            <input
-              type="search"
-              placeholder="Busca tu calculadora (ej: nómina, hipoteca, IVA...)"
-              className="w-full max-w-lg rounded-xl border border-slate-300 px-4 py-3 dark:border-slate-700 dark:bg-slate-900"
-            />
+            <CalculatorSearch />
           </div>
         </div>
       </section>
