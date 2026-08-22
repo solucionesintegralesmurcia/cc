@@ -114,6 +114,31 @@ export const ivaCalculator: CalculatorDefinition<IvaInput, IvaBreakdown> = {
       answer:
         'Sí, los tipos de IVA (21%, 10%, 4%) son los mismos independientemente de si quien factura es autónomo o empresa. Lo que cambia son las obligaciones de declaración y liquidación trimestral, no el tipo aplicable a cada producto o servicio.',
     },
+    {
+      question: '¿Qué es el IVA soportado y el IVA repercutido?',
+      answer:
+        'El IVA repercutido es el que tú cobras a tus clientes al emitir facturas por tus ventas o servicios. El IVA soportado es el que tú pagas a tus proveedores al comprar bienes o servicios para tu actividad. La diferencia entre ambos (repercutido menos soportado) es lo que ingresas o te devuelve Hacienda cada trimestre.',
+    },
+    {
+      question: '¿Cómo y cuándo se declara el IVA?',
+      answer:
+        'Autónomos y empresas declaran el IVA trimestralmente mediante el modelo 303 (plazos: hasta el 20 de abril, julio y octubre, y hasta el 30 de enero para el cuarto trimestre), y presentan además un resumen anual mediante el modelo 390 en enero. En cada declaración trimestral se liquida la diferencia entre el IVA repercutido y el soportado de ese periodo.',
+    },
+    {
+      question: '¿Qué es el recargo de equivalencia y a quién afecta?',
+      answer:
+        'Es un régimen especial de IVA obligatorio para autónomos comerciantes minoristas que venden directamente al consumidor final sin transformar los productos. En lugar de liquidar el IVA trimestralmente, pagan un recargo adicional a sus proveedores (que varía según el tipo de IVA del producto) y quedan exentos de presentar el modelo 303, simplificando su gestión administrativa a cambio de no poder deducirse el IVA soportado.',
+    },
+    {
+      question: '¿Qué operaciones están exentas de IVA?',
+      answer:
+        'Algunas actividades están exentas por ley, entre ellas ciertos servicios médicos y sanitarios, la educación reglada, algunos servicios financieros y de seguros, y el alquiler de vivienda habitual (no así el alquiler de locales comerciales, que sí lleva IVA). Estar exento no es lo mismo que tener tipo 0%: en la exención, ni se repercute IVA a los clientes ni se puede deducir el IVA soportado en las compras relacionadas.',
+    },
+    {
+      question: '¿Cómo funciona el IVA en compras a otros países de la UE?',
+      answer:
+        'En operaciones entre empresas o autónomos de distintos países de la Unión Europea (inscritos en el Registro de Operadores Intracomunitarios, ROI), la factura suele emitirse sin IVA, aplicando el mecanismo de inversión del sujeto pasivo: es el comprador quien autoliquida el IVA en su propio país, tanto como soportado como repercutido, de forma que el resultado neto es cero si el bien se destina a la actividad económica.',
+    },
   ],
   content: [
     { type: 'heading', text: 'Los tres tipos de IVA en España' },
@@ -138,6 +163,24 @@ export const ivaCalculator: CalculatorDefinition<IvaInput, IvaBreakdown> = {
       type: 'paragraph',
       text:
         'Un error frecuente es restar directamente el 21% de un precio final para "quitar el IVA": eso da un resultado incorrecto. Con 121 €, restar el 21% (25,41 €) da 95,59 €, cuando la base real es 100 €. Siempre hay que dividir entre (1 + tipo), nunca multiplicar por el tipo sobre el precio final.',
+    },
+    { type: 'heading', text: 'IVA soportado vs IVA repercutido: la clave para autónomos y empresas' },
+    {
+      type: 'paragraph',
+      text:
+        'Si eres autónomo o tienes una empresa, cada factura que emites incluye "IVA repercutido" (el que le cobras a tu cliente) y cada factura que recibes de tus proveedores incluye "IVA soportado" (el que tú pagas). Cada trimestre, Hacienda te exige la diferencia entre ambos: si has repercutido más de lo que has soportado, pagas esa diferencia; si has soportado más de lo que has repercutido (por ejemplo, tras una inversión grande), Hacienda te lo compensa o devuelve.',
+    },
+    { type: 'heading', text: 'Cuándo y cómo se declara el IVA en España' },
+    {
+      type: 'paragraph',
+      text:
+        'La declaración se hace trimestralmente mediante el modelo 303, con plazos hasta el 20 de abril, 20 de julio y 20 de octubre, y hasta el 30 de enero para el cuarto trimestre del año anterior. Además, en enero se presenta el modelo 390, un resumen anual de todas las operaciones del ejercicio. Llevar un registro ordenado de facturas emitidas y recibidas durante el trimestre facilita mucho esta declaración.',
+    },
+    { type: 'heading', text: 'Regímenes especiales: recargo de equivalencia e IVA intracomunitario' },
+    {
+      type: 'paragraph',
+      text:
+        'El recargo de equivalencia es obligatorio para comerciantes minoristas que venden productos sin transformarlos: en lugar de declarar IVA trimestralmente, pagan un recargo adicional a sus proveedores y quedan liberados de presentar el modelo 303. En las compras a otros países de la Unión Europea entre profesionales registrados en el ROI, se suele aplicar la inversión del sujeto pasivo: el vendedor factura sin IVA y es el comprador quien lo autoliquida en su propio país.',
     },
   ],
   calculate,
