@@ -246,6 +246,26 @@ export const nominaCalculator: CalculatorDefinition<NominaInput, NominaBreakdown
       answer:
         'Aumentan el "mínimo exento": la parte de tus ingresos que no tributa. Cada hijo a cargo suma un importe adicional, y una discapacidad reconocida (33-64% o 65% o más) suma un mínimo adicional todavía mayor, reduciendo la base sobre la que se calcula el IRPF y, por tanto, aumentando el neto.',
     },
+    {
+      question: '¿Qué pasa con mi retención si cambio de comunidad autónoma a mitad de año?',
+      answer:
+        'Hacienda considera tu residencia fiscal la de la comunidad donde hayas pasado más días durante el año natural. Si te mudas a mitad de año, tu empresa debería actualizar la retención aplicada, pero el cálculo definitivo del IRPF se hace en la declaración de la renta del ejercicio siguiente, no mes a mes.',
+    },
+    {
+      question: '¿Esta calculadora sirve para el Salario Mínimo Interprofesional (SMI)?',
+      answer:
+        'Sí, puedes introducir el importe del SMI vigente como salario bruto anual. En la práctica, con el SMI actual la retención de IRPF suele ser muy baja o incluso nula, porque el mínimo personal y familiar exento suele cubrir gran parte o la totalidad de la base imponible en jornada completa sin cargas familiares adicionales.',
+    },
+    {
+      question: '¿Elegir 12 o 14 pagas afecta a mi capacidad de ahorro?',
+      answer:
+        'No cambia el total que ingresas en el año, pero sí cómo lo gestionas. Con 14 pagas, las dos pagas extra funcionan como un "ahorro forzoso" que llega de golpe en verano y Navidad. Con 12 pagas, ese dinero está repartido mes a mes, lo que exige más disciplina si quieres ahorrarlo tú mismo en lugar de gastarlo en el día a día.',
+    },
+    {
+      question: '¿Puedo usar esta calculadora si soy autónomo?',
+      answer:
+        'No, esta calculadora está diseñada específicamente para el Régimen General de trabajadores por cuenta ajena. Si eres autónomo, tu cotización a la Seguridad Social funciona por tramos de rendimiento neto (el sistema RETA), no como un porcentaje sobre el salario bruto. Usa nuestra calculadora de Cuota de Autónomos para ese caso.',
+    },
   ],
   content: [
     { type: 'heading', text: 'De qué se compone tu nómina: del bruto al neto' },
@@ -254,17 +274,41 @@ export const nominaCalculator: CalculatorDefinition<NominaInput, NominaBreakdown
       text:
         'Tu salario bruto anual no es lo que acaba en tu cuenta. Antes de llegar al neto se descuentan dos bloques: las cotizaciones a la Seguridad Social a cargo del trabajador (contingencias comunes 4,70%, desempleo 1,55%, formación profesional 0,10% y el Mecanismo de Equidad Intergeneracional o MEI 0,15%, en torno al 6,5% del bruto en total), y la retención de IRPF, calculada de forma progresiva por tramos sobre tu base liquidable, después de restar el mínimo personal y familiar (que sube si tienes hijos a cargo o discapacidad).',
     },
+    { type: 'heading', text: 'Ejemplo práctico: de 24.000 € brutos a neto real' },
+    {
+      type: 'paragraph',
+      text:
+        'Tomemos el caso por defecto de esta calculadora: 24.000 € brutos anuales, 14 pagas, soltero, sin hijos, comunidad autónoma genérica. El bruto mensual es de 1.714,29 €. Las cotizaciones a la Seguridad Social del trabajador suman unos 111,42 € al mes (6,5% aprox.). La base imponible de IRPF queda en 22.440 € anuales; al restar el mínimo personal de 5.550 €, la base liquidable es de 16.890 €. Aplicando los tramos progresivos, la retención efectiva de IRPF ronda el 15,3%, unos 262 € al mes. El resultado: un salario neto mensual de aproximadamente 1.341 €, es decir, unos 18.770 € netos al año frente a los 24.000 € brutos.',
+    },
+    { type: 'heading', text: 'Qué es la base liquidable y por qué no es lo mismo que el bruto' },
+    {
+      type: 'paragraph',
+      text:
+        'La base imponible es tu salario bruto anual menos lo que ya has cotizado a la Seguridad Social. La base liquidable va un paso más allá: le resta también el "mínimo personal y familiar", una cantidad que Hacienda considera necesaria para cubrir tus necesidades básicas y que, por tanto, no debe tributar. Este mínimo aumenta si estás casado con un único perceptor de ingresos en el hogar, si tienes hijos a cargo o si tienes una discapacidad reconocida. Solo sobre lo que queda después de estas restas se aplican los tramos progresivos de IRPF.',
+    },
     { type: 'heading', text: 'Por qué el mismo salario da un neto distinto según la comunidad autónoma' },
     {
       type: 'paragraph',
       text:
         'El IRPF se compone de un tramo estatal (igual en toda España) y un tramo autonómico que cada comunidad fija de forma independiente. Por eso alguien en Madrid y alguien en Cataluña con el mismo salario bruto pueden tener un neto ligeramente distinto.',
     },
-    { type: 'heading', text: '12 pagas vs 14 pagas: no cambia el total, cambia el reparto' },
+    { type: 'heading', text: 'Subir de tramo de IRPF no te hace cobrar menos: por qué es un mito' },
     {
       type: 'paragraph',
       text:
-        'El salario neto anual es idéntico con 12 o con 14 pagas: lo único que cambia es cómo se reparte a lo largo del año. Con 14 pagas, dos son extras (normalmente junio y diciembre); con 12, ese importe se prorratea cada mes, dando una nómina mensual algo más alta pero sin extras separadas.',
+        'Uno de los malentendidos más habituales sobre las nóminas es pensar que, al "subir de tramo", todo tu salario empieza a tributar al tipo más alto y acabas cobrando menos que antes de la subida. Esto es falso: el sistema es progresivo por tramos, lo que significa que solo la parte de tu salario que supera cada umbral tributa al tipo superior; el resto sigue tributando exactamente igual que antes. Aceptar una subida de sueldo o un ascenso siempre aumenta tu neto, nunca lo reduce, aunque el aumento porcentual del neto sea algo menor que el del bruto a medida que avanzas de tramo.',
+    },
+    { type: 'heading', text: 'Cómo usar esta calculadora para negociar tu salario' },
+    {
+      type: 'paragraph',
+      text:
+        'Cuando negocies un sueldo, evita pensar solo en el bruto anual: compara siempre el neto mensual que te vas a llevar, especialmente si comparas ofertas con distinto número de pagas o de diferentes comunidades autónomas. Introduce en esta calculadora tanto la oferta actual como la nueva propuesta con tu situación familiar real (hijos, discapacidad, comunidad autónoma) para ver la diferencia exacta en tu cuenta bancaria cada mes, no solo sobre el papel del contrato.',
+    },
+    { type: 'heading', text: 'Errores comunes al interpretar tu nómina' },
+    {
+      type: 'paragraph',
+      text:
+        'Dos errores muy frecuentes: confundir el "total devengado" (bruto) con el "líquido a percibir" (neto), y no tener en cuenta que la retención de IRPF que aparece cada mes en tu nómina es solo una estimación que tu empresa calcula al inicio del año; el ajuste definitivo se hace en la declaración de la renta, donde puede salir a devolver o a pagar según lo bien o mal ajustada que haya estado esa retención mensual a tu situación real.',
     },
     {
       type: 'paragraph',
