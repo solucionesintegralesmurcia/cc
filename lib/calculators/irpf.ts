@@ -145,6 +145,26 @@ export const irpfCalculator: CalculatorDefinition<IrpfInput, IrpfBreakdown> = {
       answer:
         'Sirve como estimación del IRPF sobre el rendimiento neto (ingresos menos gastos deducibles), que es la magnitud relevante tanto para asalariados como para autónomos en estimación directa. No sustituye el cálculo del modelo 100 de la Renta ni el de los pagos fraccionados trimestrales (modelo 130).',
     },
+    {
+      question: '¿Qué otras deducciones existen además del plan de pensiones?',
+      answer:
+        'Además de las aportaciones a planes de pensiones, existen deducciones autonómicas (que varían mucho de una comunidad a otra: por alquiler de vivienda habitual, por nacimiento o adopción, por donativos, por inversión en empresas de nueva creación, entre otras) y deducciones estatales como la deducción por maternidad o por familia numerosa. Esta calculadora no las incluye porque dependen de tu comunidad autónoma y circunstancias concretas; consúltalas en la web de tu Hacienda autonómica.',
+    },
+    {
+      question: '¿Cuándo hay que presentar la declaración de la Renta?',
+      answer:
+        'La campaña de la Renta en España se abre normalmente en abril y se cierra a finales de junio del año siguiente al ejercicio fiscal. No todo el mundo está obligado a presentarla: existen umbrales mínimos de ingresos (distintos según tengas uno o varios pagadores) por debajo de los cuales no es obligatorio, aunque a veces compensa presentarla igualmente si te sale a devolver.',
+    },
+    {
+      question: '¿Qué pasa si mi retención mensual no coincide con lo que sale en esta calculadora?',
+      answer:
+        'Es normal. La retención que te aplican cada mes en la nómina es una estimación que hace tu empresa al principio del año, calculada con tus datos declarados en el modelo 145. El resultado real y definitivo del IRPF se calcula una sola vez al año, en la declaración de la Renta, momento en el que se ajustan las diferencias: si has retenido de más, Hacienda te devuelve; si has retenido de menos, tienes que pagar la diferencia.',
+    },
+    {
+      question: '¿Los rendimientos del trabajo tributan igual que los del alquiler o el ahorro?',
+      answer:
+        'No. Esta calculadora está pensada para rendimientos generales (trabajo o actividades económicas), que tributan por la escala progresiva que ves aquí. Las rentas del ahorro (dividendos, intereses, ganancias patrimoniales por venta de acciones o fondos) tributan por una escala distinta, normalmente más baja, con tipos que suelen ir del 19% al 30% según el importe.',
+    },
   ],
   content: [
     { type: 'heading', text: 'Qué es y cómo se calcula el IRPF' },
@@ -158,11 +178,34 @@ export const irpfCalculator: CalculatorDefinition<IrpfInput, IrpfBreakdown> = {
       text:
         'Ejemplo resuelto: con 30.000 € de rendimiento neto anual, sin aportaciones a plan de pensiones, sin hijos y tributación individual, tras restar el mínimo personal (5.550 €), la base liquidable es 24.450 €. Los primeros 12.450 € tributan al 19%, y el resto por tramos crecientes. El resultado es una cuota bastante menor que si se aplicara el tipo del último tramo a toda la renta.',
     },
+    { type: 'heading', text: 'Los tramos de IRPF, uno por uno' },
+    {
+      type: 'paragraph',
+      text:
+        'La escala combinada (estatal + autonómica media) tiene seis tramos: hasta 12.450 € al 19%, de 12.450 a 20.200 € al 24%, de 20.200 a 35.200 € al 30%, de 35.200 a 60.000 € al 37%, de 60.000 a 300.000 € al 45%, y a partir de 300.000 € al 47%. Cada euro que ganas cae dentro de uno de estos tramos y tributa según el porcentaje de ese tramo, nunca según el porcentaje del tramo más alto que alcances aplicado a toda la renta.',
+    },
     { type: 'heading', text: 'Cómo reducir tu base imponible legalmente' },
     {
       type: 'paragraph',
       text:
         'Las aportaciones a planes de pensiones reducen directamente la base imponible (dentro de los límites legales anuales), lo que puede incluso bajarte de tramo. El mínimo personal y familiar también reduce la base: aumenta si tienes hijos a cargo, y la declaración conjunta suma un mínimo adicional, aunque solo compensa en situaciones concretas (por ejemplo, cuando uno de los cónyuges tiene ingresos muy bajos o nulos).',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Además de estas dos vías, existen deducciones autonómicas y estatales adicionales (alquiler de vivienda habitual, donativos, familia numerosa, maternidad) que varían según tu comunidad autónoma y no están incluidas en este cálculo, ya que dependen de normativa local específica.',
+    },
+    { type: 'heading', text: 'IRPF en asalariados frente a autónomos: qué cambia' },
+    {
+      type: 'paragraph',
+      text:
+        'Para un asalariado, el "rendimiento neto" es básicamente su salario bruto (con pocos gastos deducibles). Para un autónomo en estimación directa, el rendimiento neto es el resultado de restar a sus ingresos todos los gastos deducibles de la actividad (suministros, cuota de autónomos, material, alquiler del local, etc.). En ambos casos, una vez obtenido ese rendimiento neto, el cálculo del IRPF que hace esta calculadora es el mismo: se aplican los mismos tramos progresivos sobre la base liquidable resultante.',
+    },
+    { type: 'heading', text: 'Errores frecuentes al estimar el IRPF' },
+    {
+      type: 'paragraph',
+      text:
+        'El error más común es confundir el tipo marginal con el tipo medio efectivo, pensando que "todo" el sueldo tributa al porcentaje del tramo más alto alcanzado; como se explica más arriba, esto es incorrecto porque el sistema es progresivo por tramos. El segundo error habitual es olvidar que esta calculadora estima el IRPF sobre rendimientos generales, sin incluir rentas del ahorro (dividendos, intereses, venta de acciones o fondos), que tributan por una escala distinta y separada.',
     },
   ],
   calculate,
