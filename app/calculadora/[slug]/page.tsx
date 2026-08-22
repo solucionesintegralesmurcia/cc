@@ -40,7 +40,7 @@ export default async function CalculadoraPage({ params }: PageParams) {
   const calc = getCalculator(slug)
   if (!calc) notFound()
 
-  const { meta, faqs } = calc
+  const { meta, faqs, content } = calc
 
   const jsonLd = [
     buildCalculatorSchema(meta),
@@ -90,12 +90,24 @@ export default async function CalculadoraPage({ params }: PageParams) {
       <div className="container-page py-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
           <article className="prose dark:prose-invert max-w-none">
-            <h2>¿Cómo funciona esta calculadora?</h2>
-            <p>
-              Introduce tus datos en el formulario para obtener el resultado
-              al instante, con el desglose completo de cada concepto que
-              interviene en el cálculo.
-            </p>
+            {content && content.length > 0 ? (
+              content.map((block, i) =>
+                block.type === 'heading' ? (
+                  <h2 key={i}>{block.text}</h2>
+                ) : (
+                  <p key={i}>{block.text}</p>
+                )
+              )
+            ) : (
+              <>
+                <h2>¿Cómo funciona esta calculadora?</h2>
+                <p>
+                  Introduce tus datos en el formulario para obtener el
+                  resultado al instante, con el desglose completo de cada
+                  concepto que interviene en el cálculo.
+                </p>
+              </>
+            )}
 
             {MUESTRA_TABLA_IRPF.has(meta.slug) && (
               <>

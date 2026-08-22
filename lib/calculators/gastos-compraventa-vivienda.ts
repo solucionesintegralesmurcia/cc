@@ -100,6 +100,35 @@ export const gastosViviendaCalculator: CalculatorDefinition<GastosViviendaInput,
       answer:
         'No. El ITP y el AJD son impuestos cedidos a las comunidades autónomas, que pueden fijar tipos distintos. Los valores usados aquí son una media orientativa; consulta el tipo exacto de tu comunidad antes de presupuestar la compra.',
     },
+    {
+      question: '¿Qué porcentaje del precio suponen los gastos totales?',
+      answer:
+        'Como orientación general, en vivienda de segunda mano los gastos totales suelen rondar entre el 10% y el 12% del precio de compra, dominados principalmente por el ITP. En vivienda nueva el porcentaje puede ser algo distinto por la combinación de IVA y AJD.',
+    },
+    {
+      question: '¿Hay bonificaciones en el ITP según el perfil del comprador?',
+      answer:
+        'Sí, muchas comunidades autónomas aplican tipos reducidos de ITP para determinados colectivos, como jóvenes menores de cierta edad, familias numerosas o compra de vivienda habitual. Conviene consultar la normativa autonómica específica, ya que puede suponer un ahorro significativo sobre el tipo general.',
+    },
+  ],
+  content: [
+    { type: 'heading', text: 'Todos los gastos al comprar una vivienda, más allá del precio' },
+    {
+      type: 'paragraph',
+      text:
+        'Comprar una casa cuesta bastante más que el precio de venta. Impuesto de transmisión: en vivienda nueva pagas IVA (10% general) más el Impuesto de Actos Jurídicos Documentados (AJD, variable por comunidad, en torno al 1-1,5%); en vivienda de segunda mano pagas el Impuesto de Transmisiones Patrimoniales (ITP), que varía por comunidad autónoma entre el 6% y el 11%, el gasto más importante con diferencia. Notaría: honorarios por arancel estatal, en torno al 0,5% del precio (con un mínimo). Registro de la Propiedad: arancel también fijado por ley, en torno al 0,4% del precio. Gestoría: coste fijo aproximado. Tasación: solo si compras con hipoteca, obligatoria para que el banco conceda el préstamo.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Ejemplo resuelto: una vivienda de segunda mano de 200.000 € con hipoteca, en una comunidad con ITP del 8%: 16.000 € de ITP + ~1.000 € de notaría + ~800 € de registro + 300 € de gestoría + 300 € de tasación ≈ 18.400 € en gastos, un 9,2% adicional sobre el precio de compra.',
+    },
+    { type: 'heading', text: 'Quién paga qué desde la reforma de 2019' },
+    {
+      type: 'paragraph',
+      text:
+        'La Ley Hipotecaria de 2019 cambió el reparto de gastos de la hipoteca: el banco asume el AJD del préstamo, la notaría y el registro de la escritura de préstamo hipotecario. Al comprador solo le queda, por parte del préstamo, el coste de la tasación; el resto de gastos corresponden a la compraventa del inmueble en sí, no al préstamo.',
+    },
   ],
   calculate,
 }

@@ -17,6 +17,11 @@ export interface FaqItem {
   answer: string
 }
 
+/** Bloque de contenido extendido: subtítulo (h3) o párrafo. */
+export type ContentBlock =
+  | { type: 'heading'; text: string }
+  | { type: 'paragraph'; text: string }
+
 export interface CalculationResult<T = Record<string, number>> {
   main: {
     label: string
@@ -48,6 +53,13 @@ export interface CalculatorDefinition<TInput, TBreakdown> {
   fields: FieldDef[]
   defaultValues: TInput
   calculate: (input: TInput) => CalculationResult<TBreakdown>
+  /**
+   * Texto explicativo extendido: párrafos y, opcionalmente, subtítulos.
+   * Mismo patrón que `Article.content` en lib/articles (array de párrafos,
+   * sin dangerouslySetInnerHTML). Opcional para no romper calculadoras que
+   * aún no lo tengan; si falta, la página muestra el párrafo genérico.
+   */
+  content?: ContentBlock[]
   /**
    * Anula el formato por defecto (EUR) para claves concretas del desglose.
    * Necesario para campos que no son dinero: días, meses, kilómetros,

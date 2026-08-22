@@ -130,6 +130,40 @@ export const irpfCalculator: CalculatorDefinition<IrpfInput, IrpfBreakdown> = {
       answer:
         'Sí, reducen directamente la base imponible antes de calcular el impuesto, dentro de los límites legales anuales, lo que puede bajarte incluso de tramo.',
     },
+    {
+      question: '¿Qué diferencia hay entre tipo marginal y tipo medio efectivo?',
+      answer:
+        'El tipo marginal es el porcentaje que se aplica al último tramo de tu renta, el más alto que alcanzas. El tipo medio efectivo es la cuota total dividida entre tu base imponible: como los tramos anteriores tributan a tipos más bajos, el tipo medio efectivo siempre es inferior al marginal.',
+    },
+    {
+      question: '¿Cuándo compensa hacer la declaración conjunta?',
+      answer:
+        'Suele compensar cuando uno de los cónyuges tiene ingresos muy bajos o nulos, porque el mínimo adicional de la conjunta puede reducir más la base que tributar por separado. Si ambos cónyuges tienen ingresos similares y relativamente altos, casi siempre sale mejor la declaración individual.',
+    },
+    {
+      question: '¿Este cálculo sirve para autónomos?',
+      answer:
+        'Sirve como estimación del IRPF sobre el rendimiento neto (ingresos menos gastos deducibles), que es la magnitud relevante tanto para asalariados como para autónomos en estimación directa. No sustituye el cálculo del modelo 100 de la Renta ni el de los pagos fraccionados trimestrales (modelo 130).',
+    },
+  ],
+  content: [
+    { type: 'heading', text: 'Qué es y cómo se calcula el IRPF' },
+    {
+      type: 'paragraph',
+      text:
+        'El Impuesto sobre la Renta de las Personas Físicas (IRPF) es un impuesto progresivo: no se aplica un único porcentaje sobre toda tu renta, sino que cada tramo de tu base liquidable tributa a un tipo distinto (más alto cuanto mayor es el tramo). Esto significa que tu tipo marginal (el tipo del último euro que ganas) es siempre más alto que tu tipo medio efectivo (lo que realmente pagas de media sobre el total).',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Ejemplo resuelto: con 30.000 € de rendimiento neto anual, sin aportaciones a plan de pensiones, sin hijos y tributación individual, tras restar el mínimo personal (5.550 €), la base liquidable es 24.450 €. Los primeros 12.450 € tributan al 19%, y el resto por tramos crecientes. El resultado es una cuota bastante menor que si se aplicara el tipo del último tramo a toda la renta.',
+    },
+    { type: 'heading', text: 'Cómo reducir tu base imponible legalmente' },
+    {
+      type: 'paragraph',
+      text:
+        'Las aportaciones a planes de pensiones reducen directamente la base imponible (dentro de los límites legales anuales), lo que puede incluso bajarte de tramo. El mínimo personal y familiar también reduce la base: aumenta si tienes hijos a cargo, y la declaración conjunta suma un mínimo adicional, aunque solo compensa en situaciones concretas (por ejemplo, cuando uno de los cónyuges tiene ingresos muy bajos o nulos).',
+    },
   ],
   calculate,
 }

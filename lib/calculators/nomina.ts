@@ -219,7 +219,7 @@ export const nominaCalculator: CalculatorDefinition<NominaInput, NominaBreakdown
     {
       question: '¿Cómo se calcula el salario neto a partir del bruto?',
       answer:
-        'Al salario bruto se le restan las cotizaciones a la Seguridad Social del trabajador (contingencias comunes, desempleo, formación profesional y MEI) y la retención de IRPF, calculada de forma progresiva sobre la base liquidable tras aplicar el mínimo personal y familiar.',
+        'Al salario bruto se le restan las cotizaciones a la Seguridad Social del trabajador (contingencias comunes, desempleo, formación profesional y MEI, en torno al 6,5% del bruto) y la retención de IRPF, calculada de forma progresiva sobre la base liquidable tras aplicar el mínimo personal y familiar.',
     },
     {
       question: '¿Por qué influye la comunidad autónoma en el resultado?',
@@ -235,6 +235,41 @@ export const nominaCalculator: CalculatorDefinition<NominaInput, NominaBreakdown
       question: '¿Este cálculo es exacto o solo orientativo?',
       answer:
         'Es una estimación fiable para la mayoría de casos del Régimen General, pero no sustituye el cálculo oficial de tu empresa o la Agencia Tributaria. País Vasco y Navarra tienen regímenes forales con un cálculo distinto al del resto de España.',
+    },
+    {
+      question: '¿Cuánto se paga de Seguridad Social en una nómina?',
+      answer:
+        'El trabajador aporta aproximadamente un 6,5% de su salario bruto: 4,70% de contingencias comunes, 1,55% de desempleo, 0,10% de formación profesional y 0,15% del Mecanismo de Equidad Intergeneracional (MEI). La empresa, además, paga otro porcentaje adicional (bastante mayor) que no aparece descontado en tu nómina.',
+    },
+    {
+      question: '¿Cómo afectan los hijos y la discapacidad a la nómina?',
+      answer:
+        'Aumentan el "mínimo exento": la parte de tus ingresos que no tributa. Cada hijo a cargo suma un importe adicional, y una discapacidad reconocida (33-64% o 65% o más) suma un mínimo adicional todavía mayor, reduciendo la base sobre la que se calcula el IRPF y, por tanto, aumentando el neto.',
+    },
+  ],
+  content: [
+    { type: 'heading', text: 'De qué se compone tu nómina: del bruto al neto' },
+    {
+      type: 'paragraph',
+      text:
+        'Tu salario bruto anual no es lo que acaba en tu cuenta. Antes de llegar al neto se descuentan dos bloques: las cotizaciones a la Seguridad Social a cargo del trabajador (contingencias comunes 4,70%, desempleo 1,55%, formación profesional 0,10% y el Mecanismo de Equidad Intergeneracional o MEI 0,15%, en torno al 6,5% del bruto en total), y la retención de IRPF, calculada de forma progresiva por tramos sobre tu base liquidable, después de restar el mínimo personal y familiar (que sube si tienes hijos a cargo o discapacidad).',
+    },
+    { type: 'heading', text: 'Por qué el mismo salario da un neto distinto según la comunidad autónoma' },
+    {
+      type: 'paragraph',
+      text:
+        'El IRPF se compone de un tramo estatal (igual en toda España) y un tramo autonómico que cada comunidad fija de forma independiente. Por eso alguien en Madrid y alguien en Cataluña con el mismo salario bruto pueden tener un neto ligeramente distinto.',
+    },
+    { type: 'heading', text: '12 pagas vs 14 pagas: no cambia el total, cambia el reparto' },
+    {
+      type: 'paragraph',
+      text:
+        'El salario neto anual es idéntico con 12 o con 14 pagas: lo único que cambia es cómo se reparte a lo largo del año. Con 14 pagas, dos son extras (normalmente junio y diciembre); con 12, ese importe se prorratea cada mes, dando una nómina mensual algo más alta pero sin extras separadas.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Aviso sobre País Vasco y Navarra: estas dos comunidades tienen régimen foral, su IRPF lo gestionan las Haciendas Forales con sus propias tablas, distintas del resto de España. La estimación de esta calculadora para esas comunidades es solo orientativa.',
     },
   ],
   calculate,
